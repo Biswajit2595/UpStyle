@@ -1,4 +1,4 @@
-// 
+
 import axios from 'axios';
 import { GET_PRODUCT_MEN, GET_PRODUCT_WOMEN } from './Redux/actionTypes';
 
