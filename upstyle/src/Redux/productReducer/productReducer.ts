@@ -1,3 +1,4 @@
+
 import { ProductType } from "../../constants";
 
 type AuthAction = {
@@ -42,4 +43,3 @@ type AuthAction = {
         return state;
     }
   };
-  
