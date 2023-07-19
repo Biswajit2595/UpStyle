@@ -5,5 +5,4 @@ const AllRoutes = () => {
     <div>AllRoutes</div>
   )
 }
-
 export default AllRoutes
