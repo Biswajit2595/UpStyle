@@ -18,9 +18,9 @@ return {
 
 },shallowEqual)
 
-useEffect(()=>{
-  dispatch(getProductMen())
-},[])
+// useEffect(()=>{
+//   dispatch(getProductMen())
+// },[])
 
 
 console.log(mens)

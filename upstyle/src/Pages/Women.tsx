@@ -19,9 +19,9 @@ const Women = () => {
   }
   )
   
-  useEffect(()=>{
-    dispatch(getProductWomen())
-  },[])
+  // useEffect(()=>{
+  //   dispatch(getProductWomen())
+  // },[])
   
   
   console.log(womens)
