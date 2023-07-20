@@ -9,7 +9,8 @@ import logo from "../Components/UPSTYLE_LOGO.png"
 const links = [
   {to: "/about", name:"ABOUT", id:1},
   {to: "/mens", name:"MEN", id:2},
-  {to: "/womens", name:"WOMEN", id:3}
+  {to: "/womens", name:"WOMEN", id:3},
+  {to: "/contact", name:"CONTACT", id:4}
 ];
 
 
@@ -56,7 +57,6 @@ const NavBar = () => {
           ))
         }
         <Text>SHOP</Text>
-        <Text>CONTACT</Text>
       </Flex>
       <Flex alignItems="center" gap="20px" cursor="pointer">
         <Text>{search}</Text>

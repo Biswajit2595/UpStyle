@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import AdminList from './AdminList'
 
 const Admin = () => {
+  const [activeTab, setActiveTab] = useState('addProduct');
 
 
 
@@ -17,6 +19,20 @@ const Admin = () => {
 
   return (
   <DIV>
+          <Tabs>
+        <TabButton
+          onClick={() => setActiveTab('addProduct')}
+        >
+          Add Product
+        </TabButton>
+        <TabButton
+          // active={activeTab === 'adminList'}
+          onClick={() => setActiveTab('adminList')}
+        >
+          Admin List
+        </TabButton>
+      </Tabs>
+      {activeTab === 'addProduct' && (
     <form onSubmit={handleSubmit}>
       <h1>Add Product</h1>
       <input type="text" name="title" placeholder="Title" onChange={handleChange} required/>
@@ -51,6 +67,8 @@ const Admin = () => {
       </select>
       <button type="submit" >Add Product</button>
     </form>
+     )}
+     {activeTab === 'adminList' && <AdminList />}
   </DIV>
 )
 }
@@ -85,3 +103,12 @@ button{
   cursor: pointer;
 }
 `
+
+const Tabs = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const TabButton = styled.button`
+
+`;
