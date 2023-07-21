@@ -1,8 +1,8 @@
-import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import { authReducer } from './authReducer/authReducer';
-import { productReducer } from './productReducer/productReducer';
-import thunk from "redux-thunk"
 
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import {  authReducer } from "./authReducer/authReducer";
+import { productReducer } from "./productReducer/productReducer";
+import thunk from "redux-thunk"
 
 let rootreducer = combineReducers({
     authReducer,

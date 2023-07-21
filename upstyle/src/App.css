@@ -72,3 +72,16 @@ body{
         margin-top: 30px;
     }
 }
+.box-product>*{
+    transition: .2s ease-in-out 0s;
+}
+.box-product>*:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.product-img:hover{
+    transform: scale(1.1);
+}

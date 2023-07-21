@@ -1,3 +1,4 @@
+
 import { getMensProd, getProductData, getWomensProd } from "../../api";
 import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_SUCCESS } from "../actionTypes"
 
@@ -40,3 +41,15 @@ export const getWomens=()=>(dispatch:any)=>{
 }
 
 
+
+export const getProduct = ()=> (dispatch:any)=>{
+    dispatch({type:GET_PRODUCT_REQUEST})
+
+    getProductData().then((res)=>{
+        dispatch({type:GET_PRODUCT_SUCCESS,payload:res.data})
+
+    }).catch((error)=>{
+        dispatch({type:GET_PRODUCT_FAILURE})
+
+    })
+}

@@ -1,16 +1,14 @@
-// import React, { useEffect } from 'react'
-// import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-// import { getProductMen } from '../api'
-// import styled from "styled-components"
-// import { ProductType } from '../constants'
+
+import React, { useEffect } from 'react'
+import  {Dispatch} from "redux"
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+
+import styled from "styled-components"
+import { ProductType } from '../constants'
+
+
 
 const Men = () => {
-
-  //-----------use dispatch in these way-------------------
-  // const dispatch: AppDispatch = useDispatch();
-  // dispatch(yourActionCreator()); // Dispatch your actions here
-  //-----------use dispatch in these way-------------------
-// const dispatch =useDispatch()
 
 // const {isLoading,isError,mens}=useSelector((store:any)=>{
 // return {
@@ -22,9 +20,10 @@ const Men = () => {
 
 // },shallowEqual)
 
-// // useEffect(()=>{
-// //   dispatch(getProductMen())
-// // },[])
+
+// useEffect(()=>{
+//   dispatch(getProductMen())
+// },[])
 
 
 // console.log(mens)
