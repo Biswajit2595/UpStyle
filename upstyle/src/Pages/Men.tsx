@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
+import  {Dispatch} from "redux"
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+
 import styled from "styled-components"
 import { ProductType } from '../constants'
 
+
 const Men = () => {
 
-const dispatch =useDispatch()
+const dispatch:any=useDispatch()
 
 const {isLoading,isError,mens}=useSelector((store:any)=>{
 return {
@@ -16,6 +19,7 @@ return {
 
 
 },shallowEqual)
+
 
 // useEffect(()=>{
 //   dispatch(getProductMen())
