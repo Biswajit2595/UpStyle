@@ -1,13 +1,13 @@
 
 import { ProductType } from "../../constants";
-import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS } from "../actionTypes";
+import { DELETE_PRODUCT_SUCCESS, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS, POST_PRODUCT_SUCCESS } from "../actionTypes";
 
-type AuthAction = {
+export type ProductAction = {
     type: string;
     payload?: any;
 };
   
-  type AuthState = {
+export type AuthState = {
     isLoading: boolean;
     isError: boolean;
     mens: Array<ProductType>;
@@ -27,7 +27,7 @@ type AuthAction = {
     product:[],
   };
   
-  export const productReducer = (state: AuthState = initialState, action: AuthAction) => {
+  export const productReducer = (state: AuthState = initialState, action: ProductAction) => {
     switch (action.type) {
       case GET_PRODUCT_MEN_REQUEST:
         return {
@@ -64,8 +64,19 @@ type AuthAction = {
           isLoading:false,
           womens:action.payload
           };
-        
-      
+        // admin actions------------------->
+        case POST_PRODUCT_SUCCESS:
+          return {
+            ...state,
+            isLoading:false,
+            isError:false,
+          }
+        case DELETE_PRODUCT_SUCCESS:
+          return {
+            ...state,
+            isLoading:false,
+            isError:false,
+          }
       default:
         return state;
     }

@@ -2,6 +2,8 @@
 //-------------------------------------------------
 //Manikant=====>
 
+import { DELETE_PRODUCT_SUCCESS, PATCH_PRODUCT_SUCCESS, POST_PRODUCT_SUCCESS } from "./Redux/actionTypes";
+
 //keep your code in this box
 export interface ProductType{
     id: number;

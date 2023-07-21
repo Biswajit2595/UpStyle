@@ -1,105 +1,112 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProductWomen } from '../api'
-import { ProductType } from '../constants'
-import { styled } from 'styled-components'
+// import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { getProductWomen } from '../api'
+// import { ProductType } from '../constants'
+// import { styled } from 'styled-components'
 
 const Women = () => {
 
-  const dispatch =useDispatch()
+/*
+-----------use dispatch in these way-------------------
+  const dispatch: AppDispatch = useDispatch();
+  dispatch(yourActionCreator()); // Dispatch your actions here
+*/
 
-  const {isLoading,isError,womens}=useSelector((store:any)=>{
-  return {
-    isLoading:store.productReducer.isLoading,
-    isError:store.productReducer.isError,
-    womens:store.productReducer.womens,
-  }
+  // const dispatch =useDispatch()
+
+  // const {isLoading,isError,womens}=useSelector((store:any)=>{
+  // return {
+  //   isLoading:store.productReducer.isLoading,
+  //   isError:store.productReducer.isError,
+  //   womens:store.productReducer.womens,
+  // }
   
   
-  }
-  )
+  // }
+  // )
   
-  // useEffect(()=>{
-  //   dispatch(getProductWomen())
-  // },[])
+  // // useEffect(()=>{
+  // //   dispatch(getProductWomen())
+  // // },[])
   
   
-  console.log(womens)
+  // console.log(womens)
 
 
 
   return (
-    <div  style={{border:"1 px solid black"}} >
-    {womens.map(({ Brand, Category, Price, Quantity, Rating, Size, Stock, Title, id, image, imgbag }:ProductType)=>(
-    <DIV className="product-card" key={id}>
-      <div className="product-image">
-        <img src={image} alt={Title} />
-      </div>
-      <div className="product-details">
-        <h3>{Brand}</h3>
-        <h4>{Category}</h4>
-        <p>{Title}</p>
-        <p>Price: ${Price}</p>
-        <p>Rating: {Rating}</p>
-        {/* <p>Available Sizes: {Size.join(', ')}</p> */}
-        <p>Stock: {Stock}</p>
-        <button>Add to Cart</button>
-      </div>
-    </DIV>
-    ))}
-   </div>
+    <></>
+  //   <div  style={{border:"1 px solid black"}} >
+  //   {womens.map(({ Brand, Category, Price, Quantity, Rating, Size, Stock, Title, id, image, imgbag }:ProductType)=>(
+  //   <DIV className="product-card" key={id}>
+  //     <div className="product-image">
+  //       <img src={image} alt={Title} />
+  //     </div>
+  //     <div className="product-details">
+  //       <h3>{Brand}</h3>
+  //       <h4>{Category}</h4>
+  //       <p>{Title}</p>
+  //       <p>Price: ${Price}</p>
+  //       <p>Rating: {Rating}</p>
+  //       {/* <p>Available Sizes: {Size.join(', ')}</p> */}
+  //       <p>Stock: {Stock}</p>
+  //       <button>Add to Cart</button>
+  //     </div>
+  //   </DIV>
+  //   ))}
+  //  </div>
   )
 }
 
 
-const DIV =styled.div`
+// const DIV =styled.div`
 
-//#ccc
+// //#ccc
 
-.product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-  margin: 16px;
-  width: 300px;
-}
+// .product-card {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+//   padding: 16px;
+//   margin: 16px;
+//   width: 300px;
+// }
 
-.product-image img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
+// .product-image img {
+//   max-width: 100%;
+//   height: auto;
+//   margin-bottom: 10px;
+// }
 
-.product-details h3 {
-  margin-top: 0;
-}
+// .product-details h3 {
+//   margin-top: 0;
+// }
 
-.product-details h4 {
-  margin-top: 0;
-  color: #888;
-}
+// .product-details h4 {
+//   margin-top: 0;
+//   color: #888;
+// }
 
-.product-details p {
-  margin: 4px 0;
-}
+// .product-details p {
+//   margin: 4px 0;
+// }
 
-.product-details button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
+// .product-details button {
+//   padding: 8px 16px;
+//   background-color: #007bff;
+//   color: #fff;
+//   border: none;
+//   border-radius: 4px;
+//   cursor: pointer;
+//   font-size: 16px;
+// }
 
-.product-details button:hover {
-  background-color: #0056b3;
-}
+// .product-details button:hover {
+//   background-color: #0056b3;
+// }
 
-`
+// `
 
 export default Women
