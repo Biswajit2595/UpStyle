@@ -1,6 +1,6 @@
 
 import { ProductType } from "../../constants";
-import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS } from "../actionTypes";
+import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS } from "../actionTypes";
 
  type AuthAction = {
     type: string;
@@ -63,6 +63,24 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
             ...state,
           isLoading:false,
           womens:action.payload
+          };
+
+          case GET_PRODUCT_REQUEST:
+          return {
+            ...state,
+            isLoading: true,
+          };
+          case GET_PRODUCT_FAILURE:
+            return {
+              ...state,
+              isLoading:false,
+              isError:true,
+            }
+          case GET_PRODUCT_SUCCESS:
+          return {
+            ...state,
+          isLoading:false,
+          product:action.payload
           };
         
       
