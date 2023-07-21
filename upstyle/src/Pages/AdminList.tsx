@@ -1,13 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { ProductType } from '../constants';
+import ProdTable from '../Components/ProdTable';
 
-const AdminList = () => {
-
-
-
+const AdminList = (props: { name: string; data: ProductType[] }) => {
+  const { name, data }=props
   return ( 
     <>
-      <h1>{} Product</h1>
+      <h1>{name} Product</h1>
   <table>
     <thead>
       <tr>
@@ -18,29 +17,17 @@ const AdminList = () => {
         <th>Price</th>
         <th>Rating</th>
         <th>Stock</th>
-        <th>Quantity</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-        <tr >
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>
-            <Link to={`/edit/`}>
-            <button>Edit</button>
-            </Link>
-          </td>
-          <td>
-            <button>Delete</button>
-          </td>
-        </tr>
+      {
+        data?.map(el=>
+          <ProdTable key={el.id} {...el} />
+        )
+      }
+        
     </tbody>
   </table>
   </>

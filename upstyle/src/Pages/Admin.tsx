@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import AdminList from './AdminList'
+import { useDispatch, useSelector } from 'react-redux';
+import { getMens, getWomens } from '../Redux/productReducer/action';
+import { ProductType } from '../constants';
+
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState('addProduct');
+  const { isLoading, isError, womens,mens } = useSelector((state:any) => ({
+    isLoading: state.productReducer.isLoading,
+    isError: state.productReducer.isError,
+    womens: state.productReducer.womens,
+    mens: state.productReducer.mens
+  }));
+  const dispatch:any=useDispatch()
+  const [gender,setGender]=useState("Men");
 
-
+  const handleGender=(e:React.ChangeEvent<HTMLSelectElement>)=>{
+    setGender(e.target.value)
+  }
 
   const handleSubmit=()=>{
 
@@ -16,9 +30,14 @@ const Admin = () => {
   }
 
 
+useEffect(()=>{
+  dispatch(getMens())
+  dispatch(getWomens())
+},[])
+
 
   return (
-  <DIV>
+    <>
           <Tabs>
         <TabButton
           onClick={() => setActiveTab('addProduct')}
@@ -33,6 +52,7 @@ const Admin = () => {
         </TabButton>
       </Tabs>
       {activeTab === 'addProduct' && (
+      <DIV>
     <form onSubmit={handleSubmit}>
       <h1>Add Product</h1>
       <input type="text" name="title" placeholder="Title" onChange={handleChange} required/>
@@ -49,8 +69,8 @@ const Admin = () => {
         <option value="5">5</option>
       </select>
 
-      <select name="gender" onChange={handleChange} required>
-        <option value="">Select Gender</option>
+
+      <select name="gender" onChange={handleGender} required>
         <option value="Men">Men</option>
         <option value="Women">Women</option>
       </select>
@@ -67,22 +87,29 @@ const Admin = () => {
       </select>
       <button type="submit" >Add Product</button>
     </form>
-     )}
-     {activeTab === 'adminList' && <AdminList />}
-  </DIV>
+      </DIV>
+)}
+    {activeTab === 'adminList' &&
+    <>
+    <AdminList name={"Mens"} data={mens}/>
+    <AdminList name={"Womens"} data={womens} />
+    </>
+    }
+  </>
 )
 }
 
-export default Admin
+export default Admin;
 
 const DIV=styled.div`
+box-sizing: border-box;
 width: 400px;
 margin-top: 100px;
 margin: auto;
-/* border: 1px solid grey; */
+/* border: 1px solid red; */
 padding: 10px 30px;
 border-radius: 5px;
-background-color: #cddee6;
+background-color: #7ea2b3;
 
 form{
   display: flex;
@@ -105,10 +132,14 @@ button{
 `
 
 const Tabs = styled.div`
+  background-color: #000;
+  color:
+#f2f2f3 ;
   display: flex;
+  padding: 10px;
   gap: 20px;
 `;
 
 const TabButton = styled.button`
-
+  margin: auto;
 `;

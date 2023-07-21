@@ -27,7 +27,7 @@ import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, 
     product:[],
   };
   
-  export const productReducer = (state: AuthState = initialState, action: AuthAction) => {
+  export const productReducer = (state: AuthState = initialState, action: ProductAction) => {
     switch (action.type) {
       case GET_PRODUCT_MEN_REQUEST:
         return {
@@ -82,8 +82,7 @@ import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, 
           isLoading:false,
           product:action.payload
           };
-        
-      
+
       default:
         return state;
     }
