@@ -1,13 +1,24 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Flex, Text,Heading,Box ,SimpleGrid,Skeleton,Card,Stack,CardBody,Image} from '@chakra-ui/react'
 import React,{useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faShirt, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import tshirt from "../Components/shirt-png.jpg"
+import girlpic from "../Components/girl-pic.avif"
+import { useDispatch, useSelector } from 'react-redux';
+import { getProduct } from '../Redux/productReducer/action';
+import { ProductType } from '../constants';
 
 const Home = () => {
 
+  const dispatch:any = useDispatch();
+  const product = useSelector((store:any)=> store.productReducer.product)
+  const isLoading= useSelector((store:any)=> store.productReducer.isLoading);
+  let skel = new Array(6).fill(0);
+
   useEffect(() => {
     document.body.style.background = "#F2F2F3"
+    dispatch(getProduct())
   }, [])
 
   const navigate = useNavigate()
@@ -16,6 +27,8 @@ const Home = () => {
   const shirt = <FontAwesomeIcon size='lg' icon={faShirt} />
   const bulb = <FontAwesomeIcon size='lg' icon={faLightbulb} />
 
+  
+
 
 
   return (
@@ -23,7 +36,7 @@ const Home = () => {
     {/* // UpperBody part */}
     <Flex id="header-parent" w="95%" margin="auto" justifyContent="space-between" mt="30px">
       <div >
-      <img style={{ borderRadius: "40px" }} width="100%" src="https://www.united18.com/cdn/shop/products/0M3A4976.jpg?crop=center&height=1200&v=1648723055&width=1200" alt="" />
+      <img style={{ borderRadius: "40px" }} width="100%" src={tshirt} alt="shirt-brand-png" />
 
       {/* Button Container */}
       <div style={{ position: "absolute",bottom:"10%",left:"2%", width:"95%", display: "flex",justifyContent:"space-between" }}>
@@ -51,13 +64,83 @@ const Home = () => {
     </Flex>
 
     {/* // Text and Products showing */}
-    <Flex w="90%" m="auto" mt="80px">
-      <Text fontWeight="semibold" fontSize="30px">
-        SOPA makes clothes {shirt} to elevate everyday life through lighthearted escapism. While styles vary by season, <span style={{border:"1px solid black",borderRadius:"30px",padding:"3px 10px"}}>{bulb} all collections</span> are guided by the ineffable sense of freedom that comes with travel. 
+    <Flex w="90%" m="auto" mt="60px">
+      <Text fontWeight="semibold" fontSize={{base:"20px",sm:"23px",md:"26px",lg:"30px",xl:"30px"}}>
+        SOPA makes clothes {shirt} to elevate everyday life through escapism. While styles vary by season, <span style={{border:"1px solid black",borderRadius:"30px",padding:"3px 10px"}}>{bulb} all collections</span> are guided by the ineffable sense of freedom that comes with travel. 
       </Text>
     </Flex>
 
-    
+    {/* Product data showing place */}
+
+    <Flex w="90%" m="auto" mt="60px" textAlign="left" letterSpacing="-2px">
+      <Heading fontFamily="segoe ui black">SHOP BY ESSENTIALS</Heading>
+    </Flex>
+
+    <SimpleGrid className='box-product' columns={{base:1,sm:2,md:3,lg:4,xl:5}} w="90%" m="auto" mt="30px" gap="5px" textAlign="center" fontFamily="impact" fontSize="20px" letterSpacing="1px">
+      <Box padding="10px 10px" borderRadius="30px" border="1px solid black">ALL<span style={{fontSize:"10px"}}>27</span></Box>
+      <Box padding="10px 10px" borderRadius="30px" border="1px solid black" background="black" color="white">STYLISH COLLECTION<span style={{fontSize:"10px"}}>57</span></Box>
+      <Box padding="10px 10px" borderRadius="30px" border="1px solid black">MEN COLLECTION<span style={{fontSize:"10px"}}>72</span></Box>
+      <Box padding="10px 10px" borderRadius="30px" border="1px solid black">WOMEN COLLECTION<span style={{fontSize:"10px"}}>112</span></Box>
+      <Box padding="10px 10px" borderRadius="30px" border="1px solid black">FLASH SALE<span style={{fontSize:"10px"}}>89</span></Box>
+    </SimpleGrid>
+
+    <SimpleGrid columns={{base:1,sm:2,md:2,lg:3,xl:3}} w="90%" m="auto" mt="30px" gap="20px">
+      {
+        isLoading ? skel.map((item)=>(
+          <Skeleton height="300px" borderRadius="50px" />
+        )) : 
+        product.map((item:ProductType)=>(
+          <Card p="0px" bg="transparent" key={item.id} borderRadius='40px 40px 20px 20px' >
+            <CardBody p="0" borderRadius='40px 40px 20px 20px' pb="10px" overflow="hidden">
+              <Image className='product-img' transition="0.3s"
+                src={item.image}
+                alt={item.Title}
+                borderRadius='40px'
+              />
+              <Stack mt='6' spacing='3'>
+                <Flex w="95%" m="auto" justifyContent="space-between">
+                  <Text fontWeight="bold">{item.Title}</Text>
+                  <Text fontWeight="semibold">{item.Brand}</Text>
+                </Flex>
+                <Text fontWeight="bold" color="#DE6737" ml="10px"><span style={{textDecoration:"line-through",color:"grey"}}>${item.Price*1.5}</span> ${item.Price}</Text>
+              </Stack>
+            </CardBody>
+            
+          </Card>
+        ))
+      }
+
+    </SimpleGrid>
+
+    {/* video above part */}
+
+    <Flex w={{base:"100%",sm:"90%",md:"90%",lg:"90%",xl:"90%"}} m="auto" mt="60px" justifyContent="space-between" direction={{base:"column",sm:"column",md:"column",lg:"row",xl:"row"}}>
+      <Flex display="block" w={{base:"100%",sm:"100%",md:"100%",lg:"63%",xl:"63%"}} background="#f56b33" borderRadius="30px">
+        <div style={{width:"90%",margin:"auto", fontFamily:"segoe ui black",lineHeight:"60px", fontSize:"50px",marginTop:"30px",marginBottom:"90px"}}>
+          WE'RE CHANGING<br/>
+          THE WAY THINGS<br/>
+          GET MADE
+        </div>
+        
+        <hr style={{border:"0.031rem solid black",marginBottom:"50px"}}/>
+
+        <Flex w="90%" justifyContent="space-between" m="auto" mb="20px">
+          <div style={{width:"47%"}}>
+            <Text fontWeight="bold" mb="20px"><span style={{background:"black",color:"white",borderRadius:"50%",padding:"10px"}}>{bulb}</span> MISSION</Text>
+            <Text fontWeight="semibold" lineHeight="20px">We're on a mission to empower creative independence in a commercial and incredible.</Text>
+          </div>
+          <div style={{width:"47%"}}>
+            <Text fontWeight="bold" mb="20px"><span style={{background:"black",color:"white",borderRadius:"50%",padding:"10px"}}>{shirt}</span> SUSTAINBILITY</Text>
+            <Text fontWeight="semibold" lineHeight="20px">We're challenging conventional retail, putting an end to dead stock, unconventional waste and more funtastic.</Text>
+          </div>
+        </Flex>
+      </Flex>
+
+      <Flex display={{base:"none",sm:"none",md:"none",lg:"block",xl:"block"}} style={{width:"34%",borderRadius:"30px"}}>
+        <img style={{borderRadius:"30px"}} width="100%" src={girlpic} alt="logo-shirt" />
+      </Flex>
+
+    </Flex>
 
     </div>
   )

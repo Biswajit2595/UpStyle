@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { getProductMen } from '../api'
 import styled from "styled-components"
 import { ProductType } from '../constants'
 
