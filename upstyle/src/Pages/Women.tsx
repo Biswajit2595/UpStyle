@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductWomen } from '../api'
+
 import { ProductType } from '../constants'
 import { styled } from 'styled-components'
 

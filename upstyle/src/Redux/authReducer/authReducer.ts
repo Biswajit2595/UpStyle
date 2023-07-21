@@ -1,9 +1,9 @@
-type AuthAction = {
+export type AuthAction = {
     type: string;
     payload?: any;
 };
   
-  type AuthState = {
+export   type AuthState = {
     isLoading: boolean;
     isError: boolean;
     user: any,
