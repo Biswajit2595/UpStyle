@@ -1,3 +1,5 @@
+import { ADMIN_SUCCESS, USER_FAIL, USER_LOADING, USER_LOGIN_SUCCESS, USER_SIGNUP_SUCCESS } from "../actionTypes";
+
 export type AuthAction = {
     type: string;
     payload?: any;
@@ -21,15 +23,35 @@ export   type AuthState = {
   
   export const authReducer = (state: AuthState = initialState, action: AuthAction) => {
     switch (action.type) {
-      case "SET_LOADING":
+      case USER_LOADING:
         return {
           ...state,
           isLoading: true,
         };
-      case "SET_ERROR":
+
+        case USER_SIGNUP_SUCCESS:
+          return {
+            ...state,
+            isLoading: false,
+          };
+
+        case USER_LOGIN_SUCCESS:
+          return {
+            ...state,
+            isLoading: false, user: action.payload
+          };
+
+          case ADMIN_SUCCESS:
+          return {
+            ...state,
+            isLoading: false, isAdmin: true
+          };
+
+      case USER_FAIL:
         return {
           ...state,
-          isError: true,
+          isLoading: false,
+          isError: true
         };
       
       default:
