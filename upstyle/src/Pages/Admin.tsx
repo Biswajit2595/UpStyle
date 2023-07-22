@@ -31,8 +31,8 @@ const Admin = () => {
 
 
 useEffect(()=>{
-  dispatch(getMens())
-  dispatch(getWomens())
+  // dispatch(getMens())
+  // dispatch(getWomens())
 },[])
 
 
