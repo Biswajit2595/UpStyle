@@ -85,3 +85,15 @@ body{
 .product-img:hover{
     transform: scale(1.1);
 }
+
+.footer-div>*:hover{
+    color: white;
+    cursor: pointer;
+}
+
+
+@media all and (max-width:479px) {
+    .footer-div{
+        text-align: center;
+    }
+}
