@@ -1,6 +1,9 @@
 
+
+
 import axios from 'axios';
 import { signuptype } from './constants';
+
 
 
 const API_URL = 'https://upstyle-fq0x.onrender.com';
@@ -10,13 +13,23 @@ export const getProductData= ()=>{
 }
 
 export const getMensProd=()=>{
+  
   return axios.get(`${API_URL}/mens`);
-}
+} 
 
 export const getWomensProd=()=>{
   return axios.get(`${API_URL}/women`);
 }
 
+
+export const getMensProduser=(paramObj:any)=>{
+  
+  return axios.get(`${API_URL}/mens`,paramObj);
+} 
+
+export const getWomensProduser=(paramObj:any)=>{
+  return axios.get(`${API_URL}/women`,paramObj);
+}
 
 export const AddMensProd=(product:any)=>{
   return axios.post(`${API_URL}/mens`,product)
@@ -45,3 +58,4 @@ export const makingSignupPost = (data:signuptype)=>{
   return axios.post(`${API_URL}/user`,data);
 
 }
+

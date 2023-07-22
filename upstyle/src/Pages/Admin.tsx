@@ -111,7 +111,12 @@ const Admin = () => {
   // Using Chakra UI's responsive styles based on breakpoints
   const tabSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
 
+
+
+
+
   const { Brand, Category, Title, Price, Rating, Stock, image } = product;
+
 
   return (
     <Box >

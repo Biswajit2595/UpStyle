@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { Tr, Td, Link, Button, useBreakpointValue } from '@chakra-ui/react';
 import { Link as Editlink } from 'react-router-dom'
@@ -126,6 +128,7 @@ const ProdTable = ( {id, Brand, Category, Price, Quantity, Rating, Size, Stock, 
         </>
       )}
     </Tr>
+
   );
 };
 
