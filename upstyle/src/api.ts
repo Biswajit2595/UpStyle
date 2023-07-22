@@ -1,4 +1,8 @@
+
+
+
 import axios from 'axios';
+import { signuptype } from './constants';
 
 
 
@@ -26,3 +30,32 @@ export const getMensProduser=(paramObj:any)=>{
 export const getWomensProduser=(paramObj:any)=>{
   return axios.get(`${API_URL}/women`,paramObj);
 }
+
+export const AddMensProd=(product:any)=>{
+  return axios.post(`${API_URL}/mens`,product)
+}
+
+export const PutMensProd=(product:any)=>{
+  return axios.post(`${API_URL}/mens`,product)
+}
+
+export const DeletMensProd=(id:any)=>{
+  return axios.delete(`${API_URL}/mens/${id}`)
+}
+
+export const PutWomenProd=({product}:any)=>{
+  return axios.post(`${API_URL}/women`,product)
+}
+
+export const DeletWomenProd=(id:any)=>{
+  return axios.delete(`${API_URL}/women/${id}`)
+}
+
+export const AddWomensProd=(product:any)=>{
+  return axios.post(`${API_URL}/women`,product)
+
+export const makingSignupPost = (data:signuptype)=>{
+  return axios.post(`${API_URL}/user`,data);
+
+}
+

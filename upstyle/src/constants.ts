@@ -2,9 +2,19 @@
 //-------------------------------------------------
 //Manikant=====>
 
-import { DELETE_PRODUCT_SUCCESS, PATCH_PRODUCT_SUCCESS, POST_PRODUCT_SUCCESS } from "./Redux/actionTypes";
 
 //keep your code in this box
+export interface signuptype{
+  username:string,
+  email:string,
+  password:string,
+  address: string,
+  phone:string,
+  state:string,
+  buy:Array<ProductType>,
+  cart:Array<ProductType>
+}
+
 export interface ProductType{
     id: number;
     image: string;
@@ -39,6 +49,20 @@ export interface ProductType{
 //Biswajit=====>
 
 //keep your code in this box
+export interface AddProductType{
+    id?: number;
+    image: string;
+    imgbag: Array<string>;
+    Title: string;
+    Brand: string;
+    Category: string;
+    Price: number | string;
+    Rating: number | string;
+    Stock: number | string;
+    Quantity: number | string;
+    Size: Array<string>;
+}
+
 
 //Biswajit=====>
 

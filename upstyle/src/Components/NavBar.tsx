@@ -85,10 +85,10 @@ const NavBar = () => {
             <MenuGroup>
               {isAuth && <Text fontWeight="semibold" m="12px">Hi, <span style={{color:"blue"}}>{username}</span></Text>}
               <MenuItem><Text>{home} My Account</Text></MenuItem>
-              <MenuItem><Text>{order} My Cart</Text></MenuItem>
+              <MenuItem onClick={()=> navigate("/cart")}><Text>{order} My Cart</Text></MenuItem>
               <MenuItem><Text>{baskets} My Orders</Text></MenuItem>
-              <MenuItem><Text>{payment} Payments</Text></MenuItem>
-              {isAuth? <MenuItem><Text>{signout} Logout</Text></MenuItem> : <MenuItem><Text>{signin} Login/SignUp</Text></MenuItem>}
+              <MenuItem onClick={()=> navigate("/payment")}><Text>{payment} Payments</Text></MenuItem>
+              {isAuth? <MenuItem><Text>{signout} Logout</Text></MenuItem> : <MenuItem onClick={()=> navigate("/login")}><Text>{signin} Login/SignUp</Text></MenuItem>}
             </MenuGroup>
             <MenuDivider />
             <MenuGroup title='Help'>
