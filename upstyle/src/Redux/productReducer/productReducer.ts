@@ -1,6 +1,6 @@
 
 import { ProductType } from "../../constants";
-import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS } from "../actionTypes";
+import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS, PRODUCT_REQUEST_FAILURE } from "../actionTypes";
 
  type AuthAction = {
     type: string;
@@ -27,7 +27,7 @@ import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, 
     product:[],
   };
   
-  export const productReducer = (state: AuthState = initialState, action: ProductAction) => {
+  export const productReducer = (state: AuthState = initialState, action: AuthAction) => {
     switch (action.type) {
       case GET_PRODUCT_MEN_REQUEST:
         return {
@@ -70,7 +70,7 @@ import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, 
             ...state,
             isLoading: true,
           };
-          case GET_PRODUCT_FAILURE:
+          case PRODUCT_REQUEST_FAILURE:
             return {
               ...state,
               isLoading:false,
