@@ -1,10 +1,11 @@
 import { Button, Flex, Text,Heading,Box ,SimpleGrid,Skeleton,Card,Stack,CardBody,Image} from '@chakra-ui/react'
 import React,{useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb, faShirt, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb, faPlayCircle, faShirt, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import tshirt from "../Components/shirt-png.jpg"
 import girlpic from "../Components/girl-pic.avif"
+import tailor from "../Components/tailor.jpg"
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../Redux/productReducer/action';
 import { ProductType } from '../constants';
@@ -26,7 +27,7 @@ const Home = () => {
   const bag = <FontAwesomeIcon size="lg" icon={faShoppingBag} />
   const shirt = <FontAwesomeIcon size='lg' icon={faShirt} />
   const bulb = <FontAwesomeIcon size='lg' icon={faLightbulb} />
-
+  const player = <FontAwesomeIcon beatFade size='2xl' icon={faPlayCircle} />
   
 
 
@@ -139,6 +140,24 @@ const Home = () => {
       <Flex display={{base:"none",sm:"none",md:"none",lg:"block",xl:"block"}} style={{width:"34%",borderRadius:"30px"}}>
         <img style={{borderRadius:"30px"}} width="100%" src={girlpic} alt="logo-shirt" />
       </Flex>
+
+    </Flex>
+
+    {/* video part body */}
+
+    <Flex w="100%" display="block" mt="60px" mb="80px">
+      <div style={{width:"90%",margin:"auto", fontFamily:"segoe ui black",marginBottom:"20px",letterSpacing:"-1px"}}>
+        <Text fontSize={{base:"30px",sm:"38px",md:"45px",lg:"47px",xl:"47px"}}>WANT TO DESIGN YOUR OWN? CALM, WE CAN DO IT!</Text>
+      </div>
+      <div style={{width:"90%", margin: "auto", position: "relative"}}>
+        <img style={{width: "100%",borderRadius: "30px"}} src={tailor} alt="tailor-img" />
+
+        
+        <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",color:"white",fontSize:"30px"}}>
+          
+          {player}
+        </div>
+      </div>
 
     </Flex>
 

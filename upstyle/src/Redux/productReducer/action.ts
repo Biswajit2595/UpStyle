@@ -83,3 +83,4 @@ export const deleteMen=(id:number)=>(dispatch:any)=>{
     dispatch({type:GET_PRODUCT_WOMEN_FAILURE})
 })
 }
+

@@ -15,10 +15,11 @@ import {
     AccordionPanel,
     AccordionIcon,
   } from '@chakra-ui/react'
-import { faCreditCard, faHome, faInfoCircle, faShoppingBag, faShoppingCart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard, faHome, faInfoCircle, faShirt, faShoppingBag, faShoppingCart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 import logo from "../Components/UPSTYLE_LOGO.png"
+import { useNavigate } from 'react-router-dom';
 
   interface props{
     isOpen: boolean;
@@ -28,6 +29,7 @@ import logo from "../Components/UPSTYLE_LOGO.png"
 export function Menubar({ isOpen, onClose }:props) {
 
   const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
+  const navigate = useNavigate()
 
   const home = <FontAwesomeIcon size='sm' icon={faHome} />
   const baskets = <FontAwesomeIcon size='sm' icon={faShoppingBag} />
@@ -36,6 +38,7 @@ export function Menubar({ isOpen, onClose }:props) {
   const signin = <FontAwesomeIcon size='sm' icon={faSignInAlt} />
   const signout = <FontAwesomeIcon size='sm' icon={faSignOutAlt} />
   const info = <FontAwesomeIcon size='sm' icon={faInfoCircle} />
+  const shirt = <FontAwesomeIcon size='lg' icon={faShirt} />
     
 
     return (
@@ -51,9 +54,25 @@ export function Menubar({ isOpen, onClose }:props) {
 
           <DrawerBody>
             <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button><br/>
-            <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart</Button><br/>
+            <Button onClick={()=> navigate("/cart")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart</Button><br/>
             <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={baskets}>My Orders</Button><br/>
-            <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
+            <Button onClick={()=> navigate("/payment")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
+            <Accordion allowMultiple border="none">
+              <AccordionItem border="none">
+                <h2>
+                  <AccordionButton border="none">
+                    <Button w="100%" mb="3px" variant="" justifyContent="flex-start">
+                      FASHIONS
+                    </Button>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} border="none">
+                <Button onClick={()=> navigate("/mens")} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={shirt}>MENS</Button><br/>
+                <Button onClick={()=> navigate("/womens")} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={shirt}>WOMENS</Button>
+                </AccordionPanel>
+              </AccordionItem>
+              </Accordion>
             <Accordion allowMultiple border="none">
               <AccordionItem border="none">
                 <h2>
@@ -66,7 +85,8 @@ export function Menubar({ isOpen, onClose }:props) {
                 </h2>
                 <AccordionPanel pb={4} border="none">
                 <Button w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>FAQ</Button><br/>
-                <Button w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>DOCS</Button>
+                <Button w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>DOCS</Button><br/>
+                <Button onClick={()=> navigate("/about")} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>About</Button>
                 </AccordionPanel>
               </AccordionItem>
               </Accordion>

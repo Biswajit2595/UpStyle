@@ -14,6 +14,9 @@ import SignUp from '../Pages/SignUp'
 import EditProduct from '../Pages/EditProduct'
 import ContactPage from '../Pages/Contact'
 import EditProductWomen from '../Pages/EditProductWomen'
+import { NotFound } from '../Pages/NotFound'
+import PrivateRoute from '../Components/PrivateRoute'
+
 
 const AllRoutes = () => {
   return (
@@ -21,8 +24,8 @@ const AllRoutes = () => {
       <Route path='/' element={<Home />}></Route>
       <Route path='/about' element={<About />}></Route>
       <Route path='/admin' element={<Admin />}></Route>
-      <Route path='/cart' element={<Cart />}></Route>
-      <Route path='/payment' element={<Checkout />}></Route>
+      <Route path='/cart' element={<PrivateRoute><Cart /></PrivateRoute>}></Route>
+      <Route path='/payment' element={<PrivateRoute><Checkout /></PrivateRoute>}></Route>
       <Route path='/login' element={<Login />}></Route>
       <Route path='/mens' element={<Men />}></Route>
       <Route path='/womens' element={<Women />}></Route>
@@ -31,6 +34,8 @@ const AllRoutes = () => {
       <Route path='/contact' element={<ContactPage />}></Route>
       <Route path='/edit/:id' element={<EditProduct/>}></Route>
       <Route path='/edit/:id/women' element={<EditProductWomen/>}></Route>
+      <Route path='*' element={<NotFound />}></Route>
+
     </Routes>
   )
 }
