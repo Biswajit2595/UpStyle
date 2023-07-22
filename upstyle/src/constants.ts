@@ -49,6 +49,20 @@ export interface ProductType{
 //Biswajit=====>
 
 //keep your code in this box
+export interface AddProductType{
+    id?: number;
+    image: string;
+    imgbag: Array<string>;
+    Title: string;
+    Brand: string;
+    Category: string;
+    Price: number | string;
+    Rating: number | string;
+    Stock: number | string;
+    Quantity: number | string;
+    Size: Array<string>;
+}
+
 
 //Biswajit=====>
 

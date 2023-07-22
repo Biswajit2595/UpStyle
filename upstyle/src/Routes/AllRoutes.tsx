@@ -13,8 +13,10 @@ import Product from '../Pages/Product'
 import SignUp from '../Pages/SignUp'
 import EditProduct from '../Pages/EditProduct'
 import ContactPage from '../Pages/Contact'
+import EditProductWomen from '../Pages/EditProductWomen'
 import { NotFound } from '../Pages/NotFound'
 import PrivateRoute from '../Components/PrivateRoute'
+
 
 const AllRoutes = () => {
   return (
@@ -31,7 +33,9 @@ const AllRoutes = () => {
       <Route path='/signup' element={<SignUp />}></Route>
       <Route path='/contact' element={<ContactPage />}></Route>
       <Route path='/edit/:id' element={<EditProduct/>}></Route>
+      <Route path='/edit/:id/women' element={<EditProductWomen/>}></Route>
       <Route path='*' element={<NotFound />}></Route>
+
     </Routes>
   )
 }

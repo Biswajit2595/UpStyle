@@ -1,60 +1,71 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
-const Heading = styled.h1`
-  font-size: 32px;
-  margin-bottom: 20px;
-`;
-
-const SubHeading = styled.h2`
-  font-size: 24px;
-  margin-bottom: 10px;
-`;
-
-const Paragraph = styled.p`
-  font-size: 16px;
-  margin-bottom: 5px;
-`;
+import { Box, Heading, Text } from '@chakra-ui/react';
 
 const ContactPage = () => {
   return (
-    <Container>
+    <Box maxW="600px" mx="auto" p="20px">
       <Heading>Contact Upstyle</Heading>
 
-      <SubHeading>Customer Support:</SubHeading>
-      <Paragraph>Email: support@upstyle.com</Paragraph>
-      <Paragraph>Phone: +1 (800) 123-4567</Paragraph>
+      <Heading as="h2" fontSize="24px" mb="10px">
+        Customer Support:
+      </Heading>
+      <Text as="p" fontSize="16px" mb="5px">
+        Email: support@upstyle.com
+      </Text>
+      <Text as="p" fontSize="16px" mb="20px">
+        Phone: +1 (800) 123-4567
+      </Text>
 
-      <SubHeading>Business Inquiries:</SubHeading>
-      <Paragraph>Email: business@upstyle.com</Paragraph>
-      <Paragraph>Phone: +1 (888) 987-6543</Paragraph>
+      <Heading as="h2" fontSize="24px" mb="10px">
+        Business Inquiries:
+      </Heading>
+      <Text as="p" fontSize="16px" mb="5px">
+        Email: business@upstyle.com
+      </Text>
+      <Text as="p" fontSize="16px" mb="20px">
+        Phone: +1 (888) 987-6543
+      </Text>
 
-      <SubHeading>Visit Our Store:</SubHeading>
-      <Paragraph>Upstyle Fashion Store</Paragraph>
-      <Paragraph>123 Fashion Avenue,</Paragraph>
-      <Paragraph>Cityville, State - 12345,</Paragraph>
-      <Paragraph>Country</Paragraph>
+      <Heading as="h2" fontSize="24px" mb="10px">
+        Visit Our Store:
+      </Heading>
+      <Text as="p" fontSize="16px" mb="5px">
+        Upstyle Fashion Store
+      </Text>
+      <Text as="p" fontSize="16px" mb="5px">
+        123 Fashion Avenue,
+      </Text>
+      <Text as="p" fontSize="16px" mb="5px">
+        Cityville, State - 12345,
+      </Text>
+      <Text as="p" fontSize="16px" mb="20px">
+        Country
+      </Text>
 
-      <SubHeading>Store Hours:</SubHeading>
-      <Paragraph>Monday to Friday: 9:00 AM - 7:00 PM</Paragraph>
-      <Paragraph>Saturday: 10:00 AM - 6:00 PM</Paragraph>
-      <Paragraph>Sunday: Closed</Paragraph>
+      <Heading as="h2" fontSize="24px" mb="10px">
+        Store Hours:
+      </Heading>
+      <Text as="p" fontSize="16px" mb="5px">
+        Monday to Friday: 9:00 AM - 7:00 PM
+      </Text>
+      <Text as="p" fontSize="16px" mb="5px">
+        Saturday: 10:00 AM - 6:00 PM
+      </Text>
+      <Text as="p" fontSize="16px" mb="20px">
+        Sunday: Closed
+      </Text>
 
-      <Paragraph>
+      <Text as="p" fontSize="16px">
         Feel free to drop us a message or give us a call, and we'll be delighted
         to assist you with anything you need. Whether you have questions about
         our products, need help with an order, or want to collaborate with us,
         we're always eager to hear from you.
-      </Paragraph>
+      </Text>
 
-      <Paragraph>Stay stylish with Upstyle!</Paragraph>
-    </Container>
+      <Text as="p" fontSize="16px" mt="20px">
+        Stay stylish with Upstyle!
+      </Text>
+    </Box>
   );
 };
 
