@@ -1,10 +1,6 @@
 
-
-import { getMensProd, getMensProduser, getProductData, getWomensProd, getWomensProduser } from "../../api";
-import { GET_PRODUCT_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_SUCCESS } from "../actionTypes"
-
-import { getMensProd, getProductData, getWomensProd, AddMensProd, AddWomensProd, DeletMensProd, DeletWomenProd } from '../../api';
-import { DELETE_PRODUCT_SUCCESS, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_SUCCESS, POST_PRODUCT_SUCCESS, PRODUCT_REQUEST_FAILURE } from '../actionTypes';
+import { getMensProduser, getWomensProduser,getMensProd, getProductData, getWomensProd, AddMensProd, AddWomensProd, DeletMensProd, DeletWomenProd } from '../../api';
+import { GET_PRODUCT_FAILURE,DELETE_PRODUCT_SUCCESS, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_SUCCESS, POST_PRODUCT_SUCCESS, PRODUCT_REQUEST_FAILURE } from '../actionTypes';
 
 
 export const getProduct = ()=> (dispatch:any)=>{

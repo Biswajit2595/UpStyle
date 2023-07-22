@@ -53,6 +53,7 @@ export const DeletWomenProd=(id:any)=>{
 
 export const AddWomensProd=(product:any)=>{
   return axios.post(`${API_URL}/women`,product)
+}
 
 export const makingSignupPost = (data:signuptype)=>{
   return axios.post(`${API_URL}/user`,data);
