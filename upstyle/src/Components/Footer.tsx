@@ -3,25 +3,27 @@ import React from 'react'
 import logo from "../Components/UPSTYLE_LOGO.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
 
   const send = <FontAwesomeIcon size='sm' icon={faPaperPlane} />
+  const navigate = useNavigate()
 
   return (
     <Flex display="block" w="100%" mt="40px" background="black" pt="40px" pb="40px">
 
-      <SimpleGrid w="90%" m="auto" color="white" columns={{base:1,sm:2,md:3,lg:5,xl:5}} gap="30px" alignItems={{base:"center",sm:"center",md:"none",lg:"none",xl:"none"}}>
+      <SimpleGrid w="90%" m="auto" color="white" columns={{base:2,sm:3,md:4,lg:5,xl:5}} gap="30px" alignItems={{base:"center",sm:"center",md:"none",lg:"none",xl:"none"}}>
 
         <div>
-          <img style={{filter:"invert(100%)"}} width="70%" src={logo} alt="logo" /><br/><br/><br/>
+          <img onClick={()=> navigate("/")} style={{filter:"invert(100%)",cursor:"pointer"}} width="80%" src={logo} alt="logo" /><br/><br/><br/>
           <Text>REAL DESIGNS BY REAL ARTISTS FOR REAL PEOPLE</Text>
         </div>
 
         <div className='footer-div'>
           <Text fontWeight="bold">PRODUCT</Text><br/>
-          <Text fontWeight="semibold" color="grey">Jackets</Text>
-          <Text fontWeight="semibold" color="grey">Shirts</Text>
+          <Text onClick={()=> navigate("/mens")} fontWeight="semibold" color="grey">Mens</Text>
+          <Text onClick={()=> navigate("/womens")} fontWeight="semibold" color="grey">Womens</Text>
           <Text fontWeight="semibold" color="grey">Dresses</Text>
           <Text fontWeight="semibold" color="grey">Outwear</Text>
           <Text fontWeight="semibold" color="grey">Bottoms</Text>
@@ -41,7 +43,7 @@ const Footer = () => {
           <Text fontWeight="semibold" color="grey">Instagram</Text>
           <Text fontWeight="semibold" color="grey">Facebook</Text>
           <Text fontWeight="semibold" color="grey">Twitter</Text>
-          <Text fontWeight="semibold" color="grey">About</Text>
+          <Text onClick={()=> navigate("/about")} fontWeight="semibold" color="grey">About US</Text>
           <Text fontWeight="semibold" color="grey">Contact</Text>
         </div>
 

@@ -80,8 +80,8 @@ const Home = () => {
     <SimpleGrid className='box-product' columns={{base:1,sm:2,md:3,lg:4,xl:5}} w="90%" m="auto" mt="30px" gap="5px" textAlign="center" fontFamily="impact" fontSize="20px" letterSpacing="1px">
       <Box padding="10px 10px" borderRadius="30px" border="1px solid black">ALL<span style={{fontSize:"10px"}}>27</span></Box>
       <Box padding="10px 10px" borderRadius="30px" border="1px solid black" background="black" color="white">STYLISH COLLECTION<span style={{fontSize:"10px"}}>57</span></Box>
-      <Box padding="10px 10px" borderRadius="30px" border="1px solid black">MEN COLLECTION<span style={{fontSize:"10px"}}>72</span></Box>
-      <Box padding="10px 10px" borderRadius="30px" border="1px solid black">WOMEN COLLECTION<span style={{fontSize:"10px"}}>112</span></Box>
+      <Box onClick={()=> navigate("/mens")} padding="10px 10px" borderRadius="30px" border="1px solid black">MEN COLLECTION<span style={{fontSize:"10px"}}>72</span></Box>
+      <Box onClick={()=> navigate("/womens")} padding="10px 10px" borderRadius="30px" border="1px solid black">WOMEN COLLECTION<span style={{fontSize:"10px"}}>112</span></Box>
       <Box padding="10px 10px" borderRadius="30px" border="1px solid black">FLASH SALE<span style={{fontSize:"10px"}}>89</span></Box>
     </SimpleGrid>
 
