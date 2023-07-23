@@ -1,6 +1,6 @@
 
-import { getMensProduser, getWomensProduser,getMensProd, getProductData, getWomensProd, AddMensProd, AddWomensProd, DeletMensProd, DeletWomenProd } from '../../api';
-import { GET_PRODUCT_FAILURE,DELETE_PRODUCT_SUCCESS, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_SUCCESS, POST_PRODUCT_SUCCESS, PRODUCT_REQUEST_FAILURE } from '../actionTypes';
+import { getMensProduser, getWomensProduser,getMensProd, getProductData, getWomensProd, AddMensProd, AddWomensProd, DeletMensProd, DeletWomenProd,  PutMensProd, PutWomenProd } from '../../api';
+import { GET_PRODUCT_FAILURE,DELETE_PRODUCT_SUCCESS, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_SUCCESS, POST_PRODUCT_SUCCESS, PRODUCT_REQUEST_FAILURE, GET_PRODUCT_SINGLE_MEN, GET_PRODUCT_SINGLE_WOMEN, PATCH_PRODUCT_SUCCESS } from '../actionTypes';
 
 
 export const getProduct = ()=> (dispatch:any)=>{
@@ -21,7 +21,7 @@ export const getMens=()=>(dispatch:any)=>{
   dispatch({type:GET_PRODUCT_REQUEST})
 
   getMensProd().then((res)=>{
-    console.log(res.data,"hellooooooo")
+    // console.log(res.data,"hellooooooo")
     dispatch({type:GET_PRODUCT_MEN_SUCCESS,payload:res.data})
 
 }).catch((error)=>{
@@ -29,10 +29,41 @@ export const getMens=()=>(dispatch:any)=>{
 
 })
 }
+// export const getMenSingle=(id:any)=>(dispatch:any)=>{
+//   dispatch({type:GET_PRODUCT_REQUEST})
+
+//   getMensProdSingle(id).then((res)=>{
+//     dispatch({type:GET_PRODUCT_SINGLE_MEN,payload:res.data})
+
+// }).catch((error)=>{
+//     dispatch({type:GET_PRODUCT_MEN_FAILURE})
+
+// })
+// }
+
+export const EditMensProd=(product:any,id:any)=>(dispatch:any)=>{
+  dispatch({type: GET_PRODUCT_REQUEST})
+  return PutMensProd(product,id).then(res=>{
+    dispatch({type:PATCH_PRODUCT_SUCCESS})
+  })
+  .catch(err=>{
+    dispatch({PRODUCT_REQUEST_FAILURE})
+  })
+}
+
+export const EditWomenProd=(product:any,id:any)=>(dispatch:any)=>{
+  dispatch({type: GET_PRODUCT_REQUEST})
+  return PutWomenProd(product,id).then(res=>{
+    dispatch({type:PATCH_PRODUCT_SUCCESS})
+  })
+  .catch(err=>{
+    dispatch({PRODUCT_REQUEST_FAILURE})
+  })
+}
 
 
 export const AddMen = (product:any) => (dispatch:any) => {
-  AddMensProd(product)
+  return AddMensProd(product)
     .then(() => {
       dispatch({ type: POST_PRODUCT_SUCCESS });
     })
@@ -42,7 +73,7 @@ export const AddMen = (product:any) => (dispatch:any) => {
 };
 
 export const AddWomen = (product:any) => (dispatch:any) => {
-  AddWomensProd(product)
+  return AddWomensProd(product)
     .then(() => {
       dispatch({ type: POST_PRODUCT_SUCCESS });
     })
@@ -62,6 +93,8 @@ export const getWomens=()=>(dispatch:any)=>{
 
 })
 }
+
+
 
 
 export const getMensuser=(paramObj:any)=>(dispatch:any)=>{

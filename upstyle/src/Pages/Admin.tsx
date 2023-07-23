@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AdminList from './AdminList'
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AddMen, AddWomen, getMens, getWomens } from '../Redux/productReducer/action';
 import { AddProductType } from '../constants';
 import {
@@ -16,7 +16,10 @@ import {
   TabPanels,
   TabPanel,
   useBreakpointValue,
+  Skeleton,
+  useToast,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -39,20 +42,29 @@ imgbag:[
 
 }
 // import React, { useState, useEffect } from 'react';
+// import { authReducer } from '../Redux/authReducer/authReducer';
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState('addProduct');
   const [product,setProd]=useState(initstate)
+  const isAdmin=useSelector((state:any)=>state.authReducer.isAdmin)
   const { isLoading, isError, womens,mens } = useSelector((state:any) => ({
     isLoading: state.productReducer.isLoading,
     isError: state.productReducer.isError,
     womens: state.productReducer.womens,
     mens: state.productReducer.mens
-  }));
+  }),shallowEqual);
   const dispatch:any=useDispatch()
   const [gender,setGender]=useState("Men");
+  const navigate=useNavigate()
+  const toast=useToast()
 
   useEffect(()=>{
+    // if(!isAdmin){
+    //   navigate("/login")
+    // }
+
+
     dispatch(getMens())
     dispatch(getWomens())
   },[dispatch])
@@ -101,8 +113,25 @@ const Admin = () => {
     if(gender==="Men")
     {
       dispatch(AddMen(product))
+      .then(()=>{
+        toast({
+          title: 'Product Added.',
+          description: "New Product has been Added.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+  })
+      })
     }else{
-      dispatch(AddWomen(product))
+      dispatch(AddWomen(product)).then(()=>{
+        toast({
+          title: 'Product Added.',
+          description: "New Product has been Added.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+  })
+      })
     }
 
     setProd(initstate)
@@ -112,32 +141,32 @@ const Admin = () => {
   const tabSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
 
 
-
-
-
   const { Brand, Category, Title, Price, Rating, Stock, image } = product;
 
 
   return (
     <Box >
       <Tabs m="auto" variant="enclosed"  size={tabSize}>
-        <TabList m="auto" >
-          <Tab onClick={() => setActiveTab('addProduct')}>Add Product</Tab>
-          <Tab onClick={() => setActiveTab('adminList')}>Product List</Tab>
+        <TabList m="auto"  >
+          <Tab border="2px solid black" onClick={() => setActiveTab('addProduct')}>Add Product</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Product List</Tab>
         </TabList>
 
-        <TabPanels>
+        <TabPanels >
           <TabPanel m="auto" w={['95%', '70%', '50%']}>
             <Box
-              bgColor="#75909d"
+              bgColor="#000000"
               p={6}
-              borderRadius="md"
+              m="auto"
+              borderRadius="30px"
               mt={4}
+              w="500px"
+              padding={10}
               as="form"
               onSubmit={handleSubmit}
             >
               <FormControl>
-                <FormLabel>Title</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Title</FormLabel>
                 <Input
                   type="text"
                   name="Title"
@@ -148,8 +177,9 @@ const Admin = () => {
                   required
                 />
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Image Link</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Image Link</FormLabel>
                 <Input
                   type="text"
                   name="image"
@@ -160,8 +190,9 @@ const Admin = () => {
                   required
                 />
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Brand</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Brand</FormLabel>
                 <Input
                   type="text"
                   name="Brand"
@@ -172,8 +203,9 @@ const Admin = () => {
                   required
                 />
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Price</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Price</FormLabel>
                 <Input
                   type="number"
                   name="Price"
@@ -184,8 +216,9 @@ const Admin = () => {
                   required
                 />
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Stock</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Stock</FormLabel>
                 <Input
                   type="number"
                   name="Stock"
@@ -196,8 +229,9 @@ const Admin = () => {
                   required
                 />
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Rating</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Rating</FormLabel>
                 <Select
                   name="Rating"
                   value={Rating}
@@ -213,15 +247,17 @@ const Admin = () => {
                   <option value="5">5</option>
                 </Select>
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Gender</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Gender</FormLabel>
                 <Select name="gender" value={gender} bgColor={"#f2f2f3"} onChange={handleGender}>
                   <option value="Men">Men</option>
                   <option value="Women">Women</option>
                 </Select>
               </FormControl>
+              <br/>
               <FormControl>
-                <FormLabel>Category</FormLabel>
+                <FormLabel color="#f2f2f3" fontWeight={'bold'}>Category</FormLabel>
                 <Select
                   name="Category"
                   bgColor={"#f2f2f3"}
@@ -240,12 +276,12 @@ const Admin = () => {
                   <option value="Gowns">Gowns</option>
                 </Select>
               </FormControl>
-              <Button type="submit" mt={4}>
+              <br/>
+              <Button type="submit" w="100%" _hover={{color:"white" ,bg:"#ff8800"}} color="white" bg="#f56b33" mt={4}>
                 Add Product
               </Button>
             </Box>
           </TabPanel>
-
           <TabPanel >
             <AdminList name="Mens" data={mens} />
             <AdminList name="Womens" data={womens} />

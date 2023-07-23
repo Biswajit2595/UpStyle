@@ -1,6 +1,6 @@
 
 import { ProductType } from "../../constants";
-import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS, PRODUCT_REQUEST_FAILURE } from "../actionTypes";
+import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SINGLE_MEN, GET_PRODUCT_SINGLE_WOMEN, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS, PRODUCT_REQUEST_FAILURE } from "../actionTypes";
 
  type AuthAction = {
     type: string;
@@ -12,6 +12,8 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
     isError: boolean;
     mens: Array<ProductType>;
     womens: Array<ProductType>;
+    singleMen:Array<ProductType>;
+    singleWomen:Array<ProductType>;
     cart: Array<ProductType>;
     buy: Array<ProductType>;
     product: Array<ProductType>;
@@ -22,6 +24,8 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
     isError: false,
     mens: [],
     womens: [],
+    singleMen:[],
+    singleWomen:[],
     cart: [],
     buy: [],
     product:[],
@@ -46,6 +50,19 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
         isLoading:false,
         mens:action.payload
         };
+        case GET_PRODUCT_SINGLE_MEN:
+          return {
+            ...state,
+            isLoading:false,
+            singleMen:action.payload,
+          }
+        
+          case GET_PRODUCT_SINGLE_WOMEN:
+            return {
+              ...state,
+              isLoading:false,
+              singleWomen:action.payload,
+            }
 
         case GET_PRODUCT_WOMEN_REQUEST:
           return {
