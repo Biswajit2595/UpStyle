@@ -70,6 +70,11 @@ Women-Product-Page--
 
 ![women-product-page](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/707baae4-5e4b-45d2-ab80-5436594a4b6a)
 
+Admin-AddProduct-Page--
+
+![admin-addproduct](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/36fffd1c-084a-4276-bfa2-4687b032c113)
+
+
 
 
 
