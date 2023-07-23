@@ -116,7 +116,7 @@ const SingleWomen = () => {
     </Box>
 
     {/* Product Details and Imgbag Images */}
-    <Flex flex="1" flexDirection="column" justifyContent="space-between" alignItems="center">
+    <Flex flex="1" flexDirection="column" justifyContent="space-around" alignItems="center" >
       {/* Imgbag Images */}
       <Box mb="20px">
         <Grid
@@ -162,11 +162,21 @@ const SingleWomen = () => {
         </Text>
         <Flex w="50%" justifyContent="flex-start" gap={2}>
           {data?.Size?.map((el: any, ind: any) => (
-            <Text key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>
+            <Button key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>
               {el}
-            </Text>
+            </Button>
           ))}
         </Flex>
+
+       
+
+
+
+
+
+
+
+
 
         <Button
           mt="2"

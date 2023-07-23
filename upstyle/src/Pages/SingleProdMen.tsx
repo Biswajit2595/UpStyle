@@ -29,7 +29,7 @@ const SingleProdMen = () => {
     axios
       .get(`https://upstyle-fq0x.onrender.com/mens/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLoading(false)
         setData(res.data);
       })
@@ -161,9 +161,9 @@ const SingleProdMen = () => {
       </Text>
       <Flex w="50%" justifyContent="flex-start" gap={2}>
         {data?.Size?.map((el: any, ind: any) => (
-          <Text key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>
+          <Button key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>
             {el}
-          </Text>
+          </Button>
         ))}
       </Flex>
 

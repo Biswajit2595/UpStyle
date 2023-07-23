@@ -20,6 +20,7 @@ import {
   useToast,
   InputGroup,
   InputLeftElement,
+  Heading,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -160,6 +161,7 @@ const Admin = () => {
         </TabList>
 
         <TabPanels >
+
           <TabPanel m="auto" w={['95%', '70%', '50%']}>
             <Box
               bgColor="#000000"
@@ -172,6 +174,7 @@ const Admin = () => {
               as="form"
               onSubmit={handleSubmit}
             >
+              <Heading marginLeft="30%" color="#f2f2f3">Add Product</Heading>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Title</FormLabel>
                 <InputGroup>

@@ -10,7 +10,7 @@ import {
   useBreakpointValue,
   Skeleton,
   SkeletonCircle,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
@@ -31,6 +31,12 @@ const Men = () => {
   const titleSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
   const btnSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
   let skel= new Array(8).fill(0)
+
+  const imageSize = useBreakpointValue({
+    base: "120px",
+    md: "150px",
+    lg: "200px",
+  });
 
   const dispatch: any = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,7 +64,8 @@ const Men = () => {
     document.body.style.background = "#F2F2F3"
   }, [searchParams]);
 
-   console.log(mens);
+
+   //console.log(mens);
 
 
 
@@ -100,95 +107,110 @@ const handleAddToCart = (product: ProductType) => {
 };
 
 
-
-//====================================================================================>
-
-
   return (
-   
-
-
     //================================================================================>
 
-
-    <Flex direction={{ base: 'row', md: 'row' }}>
-      <Box flex={{ base: '1', md: '3' }}>
+    <Flex direction={{ base: "column", md: "row" }}>
+      {/* Sidebar */}
+      <Box flex={{ base: "1", md: "3" }}>
         <Sidebar />
       </Box>
 
-      <Box flex={{ base: '2', md: '7' }} borderWidth="1px" p={4}>
-
-        {isLoading ? skel.map((el)=>{
-          return <Skeleton height="200px" mb="20px" />;
-        }):
-        mens.map(
-          ({
-            Brand,
-            Category,
-            Price,
-            Quantity,
-            Rating,
-            Size,
-            Stock,
-            Title,
-            id,
-            image,
-            imgbag,
-          }: ProductType) => (
-            <Box
-              key={id}
-              borderWidth="1px"
-              borderRadius="md"
-              p={4}
-              mb={4}
-              display={{ md: 'flex' }}
-              flexDirection={{ base: 'column', md: 'row' }}
-            >
-              <Box flexShrink={0} mr={{ md: 4 }}>
-              <Link to={ `/singleproduct/men/${id}` } ><Image src={image} alt={Title} maxW={imageSize} /></Link>
-              </Box>
-              <VStack mt={{ base: 4, md: 0 }} align="flex-start">
-              <Link to={ `/singleproduct/men/${id}` } >  <Heading as="h3" size={"xl"}>
-                  {Title}
-                </Heading>
-                <Heading as="h1" size={"lg"}>{Category}</Heading>
-                <Text fontSize={"lg"} >{Brand}</Text>
-                <Box style={{display:"flex",gap:"6px"}}>
-                <Text color={"black"}>Price: </Text> 
-                 <Text color={"#DE6737"}> ${Price}</Text>
+      {/* Main Content */}
+      <Box
+        flex={{ base: "2", md: "7" }}
+        borderWidth={{ base: "0", md: "1px" }}
+        p={4}
+      >
+        {isLoading
+          ? skel.map((el) => {
+              return <Skeleton height="200px" mb="20px" />;
+            })
+          : mens.map(
+              ({
+                Brand,
+                Category,
+                Price,
+                Quantity,
+                Rating,
+                Size,
+                Stock,
+                Title,
+                id,
+                image,
+                imgbag,
+              }: ProductType) => (
+                <Box
+                  key={id}
+                  borderWidth="1px"
+                  borderRadius="md"
+                  p={4}
+                  mb={4}
+                  display={{ md: "flex" }}
+                  flexDirection={{ base: "column", md: "row" }}
+                >
+                  <Box flexShrink={0} mr={{ base: 0, md: 4 }}>
+                    <Link to={`/singleproduct/men/${id}`}>
+                      <Image src={image} alt={Title} maxW="200px" />
+                    </Link>
+                  </Box>
+                  <VStack mt={{ base: 4, md: 0 }} align="flex-start" flex="1">
+                    <Link to={`/singleproduct/men/${id}`}>
+                      <Heading as="h3" size="xl">
+                        {Title}
+                      </Heading>
+                      <Heading as="h1" size="lg">
+                        {Category}
+                      </Heading>
+                      <Text fontSize="lg">{Brand}</Text>
+                      <Box style={{ display: "flex", gap: "6px" }}>
+                        <Text color="black">Price: </Text>
+                        <Text color="#DE6737"> ${Price}</Text>
+                      </Box>
+                      <Text>Rating: {Rating}</Text>
+                    </Link>
+                    {/* <Text>Available Sizes: {Size.join(', ')}</Text> */}
+                    <Flex justifyContent="flex-start" gap={2}>
+                      {Size.map((el, ind) => (
+                        <Button
+                          key={ind}
+                          backgroundColor="gray.300"
+                          borderRadius="50%"
+                          p={2}
+                        >
+                          {el}
+                        </Button>
+                      ))}
+                    </Flex>
+                    <Button
+                      background="#DE6737"
+                      size="md"
+                      _hover={{bg:"#DE6737"}}
+                      onClick={() =>
+                        handleAddToCart({
+                          Brand,
+                          Category,
+                          Price,
+                          Quantity,
+                          Rating,
+                          Size,
+                          Stock,
+                          Title,
+                          id,
+                          image,
+                          imgbag,
+                        })
+                      }
+                    >
+                      Add to Cart
+                    </Button>
+                  </VStack>
                 </Box>
-                
-                <Text>Rating: {Rating}</Text>
-                </Link>
-                {/* <Text>Available Sizes: {Size.join(', ')}</Text> */}
-          <Flex w="50%" justifyContent="flex-start" gap={2}>
-          {
-            Size.map((el,ind)=>(
-             
-                <Text key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>{el}</Text>
-              
-              
-            ))
-          }
-          </Flex>
-                
-                <Button background="#DE6737" size={btnSize} 
-                 onClick={() => handleAddToCart({ Brand, Category, Price, Quantity, Rating, Size, Stock, Title, id, image, imgbag })}>
-                  Add to Cart
-                </Button>
-              </VStack>
-            </Box>
-           
-          )
-        )
-        }
-        
+              )
+            )}
       </Box>
     </Flex>
-  
   );
 };
-
-
 
 export default Men;
