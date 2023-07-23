@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { ProductType } from "../constants";
 import { CART_CHANGE } from "../Redux/actionTypes";
 import { useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const SingleProdMen = () => {
   const { id } = useParams();
@@ -91,6 +92,9 @@ const SingleProdMen = () => {
 
 
 <div style={{ display: "flex", justifyContent: "center" ,padding:"20px"}}>
+<Helmet>
+        <title>Men Fashion | UPSTYLE</title>
+      </Helmet>
 {loading ? skel.map((el)=>{
           return <Skeleton  height="300px" mb="20px" />;
         }):

@@ -14,6 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { EditWomenProd } from '../Redux/productReducer/action';
+import { Helmet } from 'react-helmet';
 const EditProductWomen = () => {
     const singleWomen= useSelector((state:any) =>state.productReducer.singleWomen);
     const isAdmin=useSelector((state:any)=> state.authReducer.isAdmin)
@@ -68,6 +69,9 @@ const EditProductWomen = () => {
 
     return (
     <Box px={[4, 8, 12]} py={8} >
+        <Helmet>
+        <title>Admin | UPSTYLE</title>
+      </Helmet>
         <Flex justifyContent="center">
             {/*  w={['95%', '80%', '50%']} */}
         <Box borderRadius="30px" bgColor="#000000" m="auto" w="500px" boxShadow="lg" p={5}> 

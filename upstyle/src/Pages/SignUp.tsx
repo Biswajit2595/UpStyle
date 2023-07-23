@@ -6,6 +6,7 @@ import { signuptype } from '../constants'
 import { USER_FAIL, USER_LOADING, USER_SIGNUP_SUCCESS } from '../Redux/actionTypes'
 import axios from 'axios'
 import { makingPost } from '../Redux/authReducer/action'
+import { Helmet } from 'react-helmet'
 
 let initialState = {
   username:"",
@@ -79,7 +80,9 @@ const SignUp = () => {
 
   return (
     <Flex mb="120px" mt="90px">
-
+      <Helmet>
+        <title>SignUp | UPSTYLE</title>
+      </Helmet>
       <form onSubmit={handleSubmit} style={{width:"400px",margin:"auto", padding:"30px",borderRadius:"30px"}}>
       <Text boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" borderRadius="5px" bg="black" p="5px" color="white" fontSize="20px" fontWeight="bold" textAlign="center">Create Account</Text><br/>
       <FormControl isRequired>

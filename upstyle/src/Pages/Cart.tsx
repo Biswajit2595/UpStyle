@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ProductType } from '../constants';
 import { Box, Button, Image, Text, VStack, Flex, Stack, Spacer, Heading } from '@chakra-ui/react';
 import CartTotal from '../Components/CartTotal';
+import { useDispatch } from 'react-redux';
+import { CART_CHANGE } from '../Redux/actionTypes';
+import { Helmet } from 'react-helmet';
 
 const Cart = () => {
   const [cart, setCart] = useState<ProductType[]>([]);
+  const dispatch:any = useDispatch()
 
   useEffect(() => {
     const LSdata = JSON.parse(localStorage.getItem('cart') as string);
@@ -25,9 +29,13 @@ const Cart = () => {
     updatedCart.splice(index, 1);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    dispatch({type:CART_CHANGE})
   };
 
-  return ( <Stack m="auto" w="80%" direction={['column', 'row']} spacing="24px">
+  return ( <Stack m="auto" w="80%" direction={['column', 'row']} spacing="24px" mt="30px">
+    <Helmet>
+        <title>Cart | UPSTYLE</title>
+      </Helmet>
 
   <Box flex="1"> {/* Use flex="1" to take available space */}
     { cart.length >0 ? cart.map((el, index) => (

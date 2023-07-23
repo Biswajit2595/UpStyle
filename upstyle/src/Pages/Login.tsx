@@ -3,7 +3,8 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { ADMIN_SUCCESS, USER_FAIL, USER_LOADING, USER_LOGIN_SUCCESS } from '../Redux/actionTypes'
-import axios from 'axios'
+import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -96,6 +97,10 @@ const Login = () => {
 
   return (
     <Flex mb="120px" mt="80px">
+
+      <Helmet>
+        <title>Login | UPSTYLE</title>
+      </Helmet>
 
       <form onSubmit={handleSubmit} style={{width:"350px",margin:"auto", padding:"30px",borderRadius:"30px"}}>
         <Text boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" borderRadius="5px" bg="black" p="5px" color="white" fontSize="20px" fontWeight="bold" textAlign="center">Login User</Text><br/>

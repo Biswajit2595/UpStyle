@@ -1,9 +1,13 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
+import { Helmet } from 'react-helmet';
 
 const ContactPage = () => {
   return (
     <Box maxW="600px" mx="auto" p="20px">
+      <Helmet>
+        <title>Contact | UPSTYLE</title>
+      </Helmet>
       <Heading>Contact Upstyle</Heading>
 
       <Heading as="h2" fontSize="24px" mb="10px">

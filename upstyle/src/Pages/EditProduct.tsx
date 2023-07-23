@@ -14,6 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { EditMensProd } from '../Redux/productReducer/action';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const EditProduct = () => {
   const { singleMen } = useSelector((state:any) => ({
@@ -70,8 +71,11 @@ const EditProduct = () => {
 
   return (
     <Box px={[4, 8, 12]} py={8}>
+      <Helmet>
+        <title>Admin | UPSTYLE</title>
+      </Helmet>
       <Flex justifyContent="center">
-        <Box bgColor="#000000" borderRadius={10} boxShadow="lg" p={5} w={['95%', '80%', '50%']}>
+        <Box bgColor="#000000" borderRadius={10} boxShadow="lg" p={5}  w="500px">
           <form onSubmit={handleSubmit}>
             <FormControl mb={4}>
               <FormLabel color="#f2f2f3" fontWeight={'bold'}>ID</FormLabel>
@@ -111,9 +115,9 @@ const EditProduct = () => {
               </Select>
             </FormControl>
             <Center>
-              <Button color="#f2f2f3" fontWeight={'bold'} type="submit" variant="solid">
+            <Button type="submit" w="100%" _hover={{color:"white" ,bg:"#ff5100ee"}} color="white" bg="#f56b33" mt={4} variant="solid">
                 EDIT PRODUCT
-              </Button>
+                </Button>
             </Center>
           </form>
         </Box>

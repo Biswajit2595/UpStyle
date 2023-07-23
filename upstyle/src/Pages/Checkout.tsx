@@ -1,6 +1,6 @@
 import { Button, Flex, FormControl, FormLabel, Image, Input, InputGroup, InputLeftElement, Text, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Modal,
   ModalOverlay,
@@ -11,10 +11,13 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { CART_CHANGE } from '../Redux/actionTypes'
+import { Helmet } from 'react-helmet'
 
 const Checkout = () => {
   const [price,setPrice] = useState(0);
   const [data,setData] = useState([])
+  const dispatch:any = useDispatch()
 
   useEffect(() => {
     document.body.style.backgroundImage = "url(https://cutewallpaper.org/21/light-gray-wallpaper/Samsung-Galaxy-S9-Camera-Lens-Blue.jpg)"
@@ -70,6 +73,7 @@ const Checkout = () => {
 
   const handleClose = ()=>{
     localStorage.removeItem("cart");
+    dispatch({type:CART_CHANGE})
     onClose();
     navigate("/")
   }
@@ -82,6 +86,9 @@ const Checkout = () => {
   return (
     <>
     <Flex mt="10px" w="100%" mb="100px">
+    <Helmet>
+        <title>Payment | UPSTYLE</title>
+      </Helmet>
       <form onSubmit={handleSubmit} style={{width:"350px",margin:"auto",padding:"20px",borderRadius:"30px",}}>
         <Text fontSize="20px" letterSpacing="2px" fontWeight="bold" textAlign="center" color="#ff4800" fontFamily="stencil">PAYMENT STEPS</Text><br/>
         <FormControl>

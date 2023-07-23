@@ -18,11 +18,12 @@ import {  getWomensuser } from '../Redux/productReducer/action'
 import { Sidebar2 } from '../Components/Sidebar2'
 import { Link, useSearchParams } from 'react-router-dom'
 import { CART_CHANGE } from '../Redux/actionTypes';
+import { Helmet } from "react-helmet";
 
 const Women = () => {
 
   useEffect(() => {
-    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+    document.body.style.background = "#F2F2F3"
   }, [])
 
 
@@ -50,7 +51,8 @@ const Women = () => {
       isLoading: store.productReducer.isLoading,
       isError: store.productReducer.isError,
       womens: store.productReducer.womens,
-    };
+    }
+  });
 
 
   useEffect(() => {
@@ -109,6 +111,9 @@ const Women = () => {
     //===================================================================================>
 
     <Flex direction={{ base: "column", md: "row" }}>
+      <Helmet>
+        <title>Women Fashion | UPSTYLE</title>
+      </Helmet>
       {/* Sidebar */}
       <Box flex={{ base: "1", md: "3" }}>
         <Sidebar2 />
@@ -215,50 +220,6 @@ const Women = () => {
   );
 };
 
-const DIV = styled.div`
-  .product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 16px;
-    margin: 16px;
-    width: 300px;
-  }
 
-  .product-image img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
-
-  .product-details h3 {
-    margin-top: 0;
-  }
-
-  .product-details h4 {
-    margin-top: 0;
-    color: #888;
-  }
-
-  .product-details p {
-    margin: 4px 0;
-  }
-
-  .product-details button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  .product-details button:hover {
-    background-color: #0056b3;
-  }
-`;
 
 export default Women;

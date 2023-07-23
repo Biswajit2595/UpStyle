@@ -20,23 +20,18 @@ import { getMensuser } from "../Redux/productReducer/action";
 import { Sidebar } from "../Components/Sidebar";
 import { Link, useSearchParams } from "react-router-dom";
 import { CART_CHANGE } from "../Redux/actionTypes";
+import { Helmet } from "react-helmet";
 
 const Men = () => {
 
   useEffect(() => {
-    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+    document.body.style.background = "#F2F2F3"
   }, [])
 
   const imageSize = useBreakpointValue({ base: '120px', md: '150px', lg: '200px' });
   const titleSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
   const btnSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
   let skel= new Array(8).fill(0)
-
-  const imageSize = useBreakpointValue({
-    base: "120px",
-    md: "150px",
-    lg: "200px",
-  });
 
   const dispatch: any = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -111,6 +106,9 @@ const handleAddToCart = (product: ProductType) => {
     //================================================================================>
 
     <Flex direction={{ base: "column", md: "row" }}>
+      <Helmet>
+        <title>Men Fashion | UPSTYLE</title>
+      </Helmet>
       {/* Sidebar */}
       <Box flex={{ base: "1", md: "3" }}>
         <Sidebar />

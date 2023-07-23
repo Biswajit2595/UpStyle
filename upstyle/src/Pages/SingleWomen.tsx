@@ -8,6 +8,7 @@ import { ProductType } from "../constants";
 import { useToast } from "@chakra-ui/react";
 import { CART_CHANGE } from "../Redux/actionTypes";
 import { useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const SingleWomen = () => {
   const { id } = useParams();
@@ -92,6 +93,9 @@ const SingleWomen = () => {
     
 
   <div style={{ display: "flex", justifyContent: "center",padding:"20px" }}>
+    <Helmet>
+        <title>Women Fashion | UPSTYLE</title>
+      </Helmet>
   {loading ? skel.map((el)=>{
           return <Skeleton  height="200px" mb="20px" />;
         }):

@@ -2,11 +2,15 @@ import React from 'react'
 import { ProductType } from '../constants';
 import ProdTable from '../Components/ProdTable';
 import { Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react';
+import { Helmet } from 'react-helmet';
 
 const AdminList = (props: { name: string; data: ProductType[] }) => {
   const { name, data }=props
   return (
     <>
+    <Helmet>
+        <title>AdminList | UPSTYLE</title>
+      </Helmet>
       <Heading size="xl" textAlign="center" mt="4">
         {name} Product
       </Heading>

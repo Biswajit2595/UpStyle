@@ -23,6 +23,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -154,6 +155,9 @@ const Admin = () => {
 
   return (
     <Box >
+      <Helmet>
+        <title>Admin | UPSTYLE</title>
+      </Helmet>
       <Tabs m="auto" variant="enclosed"  size={tabSize}>
         <TabList m="auto"  >
           <Tab border="2px solid black" onClick={() => setActiveTab('addProduct')}>Add Product</Tab>

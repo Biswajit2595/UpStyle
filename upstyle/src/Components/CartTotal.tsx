@@ -20,16 +20,16 @@ const CartTotal = ({ cartItems }:any) => {
         Cart Total
         </Heading>
         <Text fontSize="lg" fontWeight="bold">
-        Subtotal: ₹{totalPrice.toFixed(2)}
+        Subtotal: ${totalPrice.toFixed(2)}
         </Text>
         <Text fontSize="lg" fontWeight="bold">
-        Shipping: ₹{ totalPrice>0 ? shippingCost.toFixed(2):0}
+        Shipping: ${ totalPrice>0 ? shippingCost.toFixed(2):0}
         </Text>
         <Text fontSize="lg" fontWeight="bold">
-        Tax (8%): ₹{taxAmount.toFixed(2)}
+        Tax (8%): ${taxAmount.toFixed(2)}
         </Text>
         <Text fontSize="lg" fontWeight="bold" color="red">
-        Final Total: ₹{ totalPrice>0 ? finalTotal.toFixed(2):0}
+        Final Total: ${ totalPrice>0 ? finalTotal.toFixed(2):0}
         </Text>
         <Link to={"/payment"}>
         <Button w="100%" _hover={{color:"white" ,bg:"#48822d"}} color="white" bg="#f56b33" mt={4}>Proceed To Checkout</Button>

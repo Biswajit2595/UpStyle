@@ -2,6 +2,7 @@ import { Button, Flex, Image, Img } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import error from "../Components/404.png";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
  function NotFound() {
   useEffect(() => {
@@ -12,7 +13,11 @@ import { useNavigate } from "react-router-dom";
 
   return (
     <div>
+      <Helmet>
+        <title>404 Error | UPSTYLE</title>
+      </Helmet>
       <Flex w="100%" mt="60px" mb="20px" justifyContent="center">
+        
         <Image
           justifyContent="center"
           w={{ base: "100%", sm: "90%", md: "80%", lg: "50%", xl: "50%" }}

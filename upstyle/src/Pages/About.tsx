@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react';
+import { Helmet } from 'react-helmet';
 
 const About = () => {
 
@@ -9,6 +10,9 @@ const About = () => {
 
   return (
     <Box maxW="70%" mx="auto">
+      <Helmet>
+        <title>About | UPSTYLE</title>
+      </Helmet>
       <Heading>Welcome to Upstyle - Your Fashion Destination!</Heading>
 
       <Heading as="h2" size="lg" mt="20px">
