@@ -21,7 +21,7 @@ let initialState = {
 const SignUp = () => {
 
   useEffect(() => {
-    document.body.style.backgroundImage = "url(https://en.idei.club/uploads/posts/2023-06/1686873401_en-idei-club-p-mall-hall-dizain-krasivo-4.jpg)"
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
   }, [])
 
   const dispatch:any = useDispatch()
@@ -80,7 +80,8 @@ const SignUp = () => {
   return (
     <Flex mb="120px" mt="90px">
 
-      <form onSubmit={handleSubmit} style={{width:"400px",margin:"auto",background:"transparent",backdropFilter:"blur(22px)", padding:"30px",borderRadius:"30px",boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+      <form onSubmit={handleSubmit} style={{width:"400px",margin:"auto", padding:"30px",borderRadius:"30px"}}>
+      <Text boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" borderRadius="5px" bg="black" p="5px" color="white" fontSize="20px" fontWeight="bold" textAlign="center">Create Account</Text><br/>
       <FormControl isRequired>
       <FormLabel color="#ff4800" fontWeight="bold">Enter Full Name</FormLabel>
         <InputGroup>
@@ -116,7 +117,7 @@ const SignUp = () => {
 
         <FormLabel color="#ff4800" fontWeight="bold">Select State Name</FormLabel>
         <InputGroup>
-          <Select background="white" value={formdata.state} onChange={(e)=> setFormdata({...formdata,state:e.target.value})} required>
+          <Select border="1px solid black" background="white" value={formdata.state} onChange={(e)=> setFormdata({...formdata,state:e.target.value})} required>
             <option value="">--Select Your State--</option>
             <option value="Bihar">Bihar</option>
             <option value="Kerla">Kerla</option>
@@ -126,7 +127,7 @@ const SignUp = () => {
         </FormControl>
 
       {isLoading ?<Button w="100%" disabled background="#ff4800" isLoading _hover={{background:"#ff4800"}} ></Button>  : <Button fontWeight="bold" color="white" background="#F56B33" _hover={{background:"#ff4800"}} w="100%" type='submit'>Create Account</Button>}
-      <Text textAlign="center" color="white" mt="20px">Already Registered? <span onClick={()=> navigate("/login")} style={{fontWeight:"bold",color:"#ff4800",cursor:"pointer"}}>Go to Login</span></Text>
+      <Text textAlign="center" color="black" mt="20px">Already Registered? <span onClick={()=> navigate("/login")} style={{fontWeight:"bold",color:"#ff4800",cursor:"pointer"}}>Go to Login</span></Text>
       </form>
 
     </Flex>

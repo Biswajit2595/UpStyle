@@ -14,7 +14,7 @@ const Login = () => {
   const location = useLocation()
 
   useEffect(() => {
-    document.body.style.backgroundImage = "url(https://www.bizeta.net/wp-content/uploads/2021/09/noleggio-abiti-fashion.jpg)"
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
   }, [])
 
   useEffect(()=>{
@@ -95,9 +95,10 @@ const Login = () => {
 
 
   return (
-    <Flex mb="120px" mt="130px">
+    <Flex mb="120px" mt="80px">
 
-      <form onSubmit={handleSubmit} style={{width:"350px",margin:"auto",background:"transparent",backdropFilter:"blur(22px)", padding:"30px",borderRadius:"30px",boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+      <form onSubmit={handleSubmit} style={{width:"350px",margin:"auto", padding:"30px",borderRadius:"30px"}}>
+        <Text boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" borderRadius="5px" bg="black" p="5px" color="white" fontSize="20px" fontWeight="bold" textAlign="center">Login User</Text><br/>
       <FormControl isRequired>
         <FormLabel fontWeight="bold">Enter Your Email</FormLabel>
         <InputGroup>
@@ -119,7 +120,7 @@ const Login = () => {
       </Flex><br/>
 
       {isLoading ?<Button w="100%" disabled background="#ff4800" isLoading _hover={{background:"#ff4800"}} ></Button>  : <Button fontWeight="bold" color="white" background="#F56B33" _hover={{background:"#ff4800"}} w="100%" type='submit'>LOGIN</Button>}
-      <Text textAlign="center" color="white" mt="20px">New User? <span onClick={()=> navigate("/signup")} style={{fontWeight:"bold",color:"#ff4800",cursor:"pointer"}}>Create Account</span></Text>
+      <Text textAlign="center" color="black" mt="20px">New User? <span onClick={()=> navigate("/signup")} style={{fontWeight:"bold",color:"#ff4800",cursor:"pointer"}}>Create Account</span></Text>
       </form>
 
     </Flex>

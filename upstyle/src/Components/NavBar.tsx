@@ -40,6 +40,21 @@ const NavBar = () => {
   const toast = useToast()
   const cart = useSelector((store:any)=> store.productReducer.cart);
   const [isSticky, setIsSticky] = useState<boolean>(false);
+  const cartlength = useSelector((store:any)=> store.productReducer.cartlength);
+
+  const [data,setData] = useState([]);
+
+  useEffect(()=>{
+    let cartdata= localStorage.getItem("cart");
+    
+    if(cartdata){
+      setData(JSON.parse(cartdata));
+    }else{
+      setData([])
+    }
+  },[cartlength])
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +84,7 @@ const NavBar = () => {
       <Flex w="100%" background="black" color="white" fontStyle="italic" h="35px" alignItems="center" justifyContent="center" >
         free shipping on u.s. orders over $50</Flex>
 
-      <Flex id='navbar-menu' position={isSticky ? 'fixed' : 'static'} top="0" boxShadow={isSticky? "rgba(0, 0, 0, 0.24) 0px 3px 8px" : "none"}>
+      <Flex zIndex="999999" id='navbar-menu' position={isSticky ? 'fixed' : 'static'} top="0" boxShadow={isSticky? "rgba(0, 0, 0, 0.24) 0px 3px 8px" : "none"}>
 
       <img onClick={()=> navigate("/")} style={{cursor:"pointer"}} src={logo} alt="logo" width="130px" sizes="fixed" />
 
@@ -89,7 +104,7 @@ const NavBar = () => {
 
       <Flex alignItems="center" gap="20px" cursor="pointer" display={{base:"none",sm:"none",md:"flex",lg:"flex",xl:"flex"}}>
         <Text>{search}</Text>
-        <Text onClick={()=> navigate("/cart")}>{basket}<span style={{background:"black",color:"white",borderRadius:"50%",padding:"1px 4px"}}>{cart.length}</span></Text>
+        <Text onClick={()=> navigate("/cart")}>{basket}{isAuth && <span style={{background:"black",color:"white",borderRadius:"50%",padding:"1px 4px"}}>{data.length}</span>}</Text>
         <Menu>
           <MenuButton color={isAuth || isAdmin ? "blue" : "black"}>
             {user}

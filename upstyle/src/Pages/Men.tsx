@@ -19,16 +19,24 @@ import { ProductType } from "../constants";
 import { getMensuser } from "../Redux/productReducer/action";
 import { Sidebar } from "../Components/Sidebar";
 import { Link, useSearchParams } from "react-router-dom";
+import { CART_CHANGE } from "../Redux/actionTypes";
 
 const Men = () => {
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+  }, [])
+
+  const imageSize = useBreakpointValue({ base: '120px', md: '150px', lg: '200px' });
+  const titleSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
+  const btnSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
+  let skel= new Array(8).fill(0)
+
   const imageSize = useBreakpointValue({
     base: "120px",
     md: "150px",
     lg: "200px",
   });
-  const titleSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
-  const btnSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
-  let skel = new Array(8).fill(0);
 
   const dispatch: any = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,49 +61,51 @@ const Men = () => {
     };
     // console.log(paramObj);
     dispatch(getMensuser(paramObj));
+    document.body.style.background = "#F2F2F3"
   }, [searchParams]);
 
-  console.log(mens);
 
-  //  ====================================================================>
+   //console.log(mens);
 
-  const toast = useToast();
 
-  const handleAddToCart = (product: ProductType) => {
-    const existingCartItems = localStorage.getItem("cart");
-    let cart = [];
-    if (existingCartItems) {
-      cart = JSON.parse(existingCartItems);
-    }
 
-    // Check if the product is already in the cart
-    const isProductInCart = cart.some(
-      (item: any) => item.Title === product.Title
-    );
+//  ====================================================================>
 
-    if (isProductInCart) {
-      toast({
-        title: "Product already in the cart",
-        status: "warning",
-        duration: 3000, // 3 seconds
-        isClosable: true,
-        position: "top",
-      });
-    } else {
-      // Add the product to the cart
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      toast({
-        title: "Product added to cart",
-        status: "success",
-        duration: 3000, // 3 seconds
-        isClosable: true,
-        position: "top",
-      });
-    }
-  };
+const toast = useToast(); 
 
-  //====================================================================================>
+const handleAddToCart = (product: ProductType) => {
+  const existingCartItems = localStorage.getItem("cart");
+  let cart = [];
+  if (existingCartItems) {
+    cart = JSON.parse(existingCartItems);
+  }
+
+  // Check if the product is already in the cart
+  const isProductInCart = cart.some((item:any) => item.Title === product.Title);
+
+  if (isProductInCart) {
+    toast({
+      title: "Product already in the cart",
+      status: "warning",
+      duration: 3000, // 3 seconds
+      isClosable: true,
+      position:"top"
+    });
+  } else {
+    // Add the product to the cart
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast({
+      title: "Product added to cart",
+      status: "success",
+      duration: 3000, // 3 seconds
+      isClosable: true,
+      position:"top"
+    });
+    dispatch({type:CART_CHANGE})
+  }
+};
+
 
   return (
     //================================================================================>

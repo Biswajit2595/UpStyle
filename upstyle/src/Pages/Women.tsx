@@ -12,13 +12,21 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
-import { ProductType } from "../constants";
-import { styled } from "styled-components";
-import { getWomensuser } from "../Redux/productReducer/action";
-import { Sidebar2 } from "../Components/Sidebar2";
-import { Link, useSearchParams } from "react-router-dom";
+import { ProductType } from '../constants'
+import { styled } from 'styled-components'
+import {  getWomensuser } from '../Redux/productReducer/action'
+import { Sidebar2 } from '../Components/Sidebar2'
+import { Link, useSearchParams } from 'react-router-dom'
+import { CART_CHANGE } from '../Redux/actionTypes';
 
 const Women = () => {
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+  }, [])
+
+
+
   const toast = useToast();
   const imageSize = useBreakpointValue({
     base: "120px",
@@ -43,7 +51,7 @@ const Women = () => {
       isError: store.productReducer.isError,
       womens: store.productReducer.womens,
     };
-  });
+
 
   useEffect(() => {
     let paramObj = {
@@ -56,6 +64,7 @@ const Women = () => {
     };
     dispatch(getWomensuser(paramObj));
   }, [searchParams]);
+
 
   //  console.log(womens)
   //=====================>
@@ -90,6 +99,7 @@ const Women = () => {
         isClosable: true,
         position: "top",
       });
+      dispatch({type:CART_CHANGE})
     }
   };
 

@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductType } from "../constants";
 import { useToast } from "@chakra-ui/react";
+import { CART_CHANGE } from "../Redux/actionTypes";
+import { useDispatch } from "react-redux";
 
 const SingleWomen = () => {
   const { id } = useParams();
@@ -14,10 +16,15 @@ const SingleWomen = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState("");
   let skel= new Array(8).fill(0)
+  const dispatch:any = useDispatch()
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+  }, [])
 
   // console.log(id)
 
-  const fetchdata = () => {
+  const fetchdata = (id:any) => {
     axios
       .get(`https://upstyle-fq0x.onrender.com/women/${id}`)
       .then((res) => {
@@ -31,8 +38,9 @@ const SingleWomen = () => {
   };
 
   useEffect(() => {
-    fetchdata();
-  }, []);
+    fetchdata(id);
+    document.body.style.background = "#F2F2F3"
+  }, [id]);
 
   //  ====================================================================>
 
@@ -68,6 +76,7 @@ const SingleWomen = () => {
         isClosable: true,
         position: "top",
       });
+      dispatch({type:CART_CHANGE})
     }
   };
 

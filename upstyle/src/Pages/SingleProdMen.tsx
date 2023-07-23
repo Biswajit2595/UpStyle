@@ -5,6 +5,8 @@ import { Box, Image, Badge, Text, Button, Flex, Grid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductType } from "../constants";
+import { CART_CHANGE } from "../Redux/actionTypes";
+import { useDispatch } from "react-redux";
 
 const SingleProdMen = () => {
   const { id } = useParams();
@@ -16,6 +18,11 @@ const SingleProdMen = () => {
   const [data, setData] = useState<any>([]);
   const [loading,setLoading]=useState(false)
   const [selectedImage, setSelectedImage] = useState("");
+  const dispatch:any = useDispatch()
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+  }, [])
 
   const fetchdata = (id:any) => {
     setLoading(true)
@@ -33,6 +40,7 @@ const SingleProdMen = () => {
 
   useEffect(() => {
     fetchdata(id);
+    document.body.style.background = "#F2F2F3"
   }, [id]);
 
   //  ====================================================================>
@@ -67,6 +75,7 @@ const SingleProdMen = () => {
         isClosable: true,
         position:"top"
       });
+      dispatch({type:CART_CHANGE})
     }
   };
 
