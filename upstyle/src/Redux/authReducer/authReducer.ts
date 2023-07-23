@@ -1,4 +1,4 @@
-import { ADMIN_SUCCESS, USER_FAIL, USER_LOADING, USER_LOGIN_SUCCESS, USER_SIGNUP_SUCCESS } from "../actionTypes";
+import { ADMIN_SUCCESS, USER_FAIL, USER_LOADING, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_SIGNUP_SUCCESS } from "../actionTypes";
 
 export type AuthAction = {
     type: string;
@@ -29,6 +29,11 @@ export   type AuthState = {
           isLoading: true,
         };
 
+        case USER_LOGOUT: 
+        return {
+          ...state,isAuth: false, isAdmin: false,user: {}
+        }
+
         case USER_SIGNUP_SUCCESS:
           return {
             ...state,
@@ -38,13 +43,13 @@ export   type AuthState = {
         case USER_LOGIN_SUCCESS:
           return {
             ...state,
-            isLoading: false, user: action.payload
+            isLoading: false,isAuth: true, user: action.payload,isAdmin: false,isError: false
           };
 
           case ADMIN_SUCCESS:
           return {
             ...state,
-            isLoading: false, isAdmin: true
+            isLoading: false, isAdmin: true,isAuth: false,isError: false
           };
 
       case USER_FAIL:

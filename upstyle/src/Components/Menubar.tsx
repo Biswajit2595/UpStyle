@@ -6,7 +6,7 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,Input,
-    Button
+    Button,Text, useToast
   } from '@chakra-ui/react'
   import {
     Accordion,
@@ -17,9 +17,10 @@ import {
   } from '@chakra-ui/react'
 import { faCreditCard, faHome, faInfoCircle, faShirt, faShoppingBag, faShoppingCart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from "../Components/UPSTYLE_LOGO.png"
 import { useNavigate } from 'react-router-dom';
+import { USER_LOGOUT } from '../Redux/actionTypes';
 
   interface props{
     isOpen: boolean;
@@ -29,7 +30,21 @@ import { useNavigate } from 'react-router-dom';
 export function Menubar({ isOpen, onClose }:props) {
 
   const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
+  const isAdmin = useSelector((store:any)=> store.authReducer.isAdmin);
+  const username = useSelector((store:any)=> store.authReducer.user.username);
   const navigate = useNavigate()
+  const toast = useToast();
+  const dispatch:any = useDispatch()
+
+  const handleLogout = ()=>{
+    dispatch({type: USER_LOGOUT})
+    toast({
+      title: "Logout Successfull",
+      status: "success",
+      position: "top",
+      isClosable: true,
+    })
+  }
 
   const home = <FontAwesomeIcon size='sm' icon={faHome} />
   const baskets = <FontAwesomeIcon size='sm' icon={faShoppingBag} />
@@ -50,10 +65,13 @@ export function Menubar({ isOpen, onClose }:props) {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader><img width="45%" src={logo} alt='logo' /></DrawerHeader>
+          <DrawerHeader><img onClick={()=> navigate("/")} width="45%" src={logo} alt='logo' /></DrawerHeader>
 
           <DrawerBody>
-            <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button><br/>
+            {isAuth && <Text fontWeight="bold" m="12px">Hi, <span style={{color:"blue"}}>{username}</span></Text>}
+            {isAdmin && <Text fontWeight="bold" m="12px" color="blue">Welcome Admin🙂</Text>}
+            {isAdmin===false && <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button>}
+            {isAdmin && <Button onClick={()=> navigate("/admin")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>MANAGE DATA</Button>}<br/>
             <Button onClick={()=> navigate("/cart")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart</Button><br/>
             <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={baskets}>My Orders</Button><br/>
             <Button onClick={()=> navigate("/payment")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
@@ -86,14 +104,14 @@ export function Menubar({ isOpen, onClose }:props) {
                 <AccordionPanel pb={4} border="none">
                 <Button w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>FAQ</Button><br/>
                 <Button w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>DOCS</Button><br/>
-                <Button onClick={()=> navigate("/about")} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={info}>About</Button>
                 </AccordionPanel>
               </AccordionItem>
               </Accordion>
+              <Button onClick={()=> navigate("/about")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={info}>ABOUT US</Button><br/>
           </DrawerBody>
 
           <DrawerFooter>
-          {isAuth ? <Button w="100%" variant="solid" colorScheme='red' justifyContent="flex-start" leftIcon={signout}>Logout</Button>: <Button w="100%" variant="solid" colorScheme='blue' justifyContent="flex-start" leftIcon={signin}>SignUp/Login</Button>}
+          {isAuth || isAdmin ? <Button onClick={handleLogout} w="100%" variant="solid" colorScheme='red' justifyContent="flex-start" leftIcon={signout}>Logout</Button>: <Button onClick={()=> navigate("/login")} w="100%" variant="solid" colorScheme='blue' justifyContent="flex-start" leftIcon={signin}>SignUp/Login</Button>}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

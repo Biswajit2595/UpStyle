@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import {Flex,Text,Box, useDisclosure,Menu,MenuButton,MenuList,MenuGroup,MenuItem,MenuDivider,Button} from "@chakra-ui/react"
+import {Flex,Text,Box, useDisclosure,Menu,MenuButton,MenuList,MenuGroup,MenuItem,MenuDivider,Button, useToast} from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCreditCard, faHome, faInfoCircle, faSearch,faShoppingBag,faShoppingBasket, faShoppingCart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
+import { faUserCircle,faBars, faCreditCard, faHome, faInfoCircle, faSearch,faShoppingBag,faShoppingBasket, faShoppingCart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import logo from "../Components/UPSTYLE_LOGO.png"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Menubar } from './Menubar';
+import { USER_LOGOUT } from '../Redux/actionTypes';
 
 const links = [
   {to: "/about", name:"ABOUT", id:1},
@@ -20,11 +20,12 @@ const NavBar = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
+  const isAdmin = useSelector((store:any)=> store.authReducer.isAdmin);
   const username = useSelector((store:any)=> store.authReducer.user.username);
 
   const search = <FontAwesomeIcon size="lg" icon={faSearch} />
   const basket = <FontAwesomeIcon fade size="lg" icon={faShoppingBasket} />
-  const user = <FontAwesomeIcon size="xl" icon={faUserCircle} />
+  const user = <FontAwesomeIcon beatFade size="xl" icon={faUserCircle} />
   const bars = <FontAwesomeIcon size='lg' icon={faBars} />
   const home = <FontAwesomeIcon size='sm' icon={faHome} />
   const baskets = <FontAwesomeIcon size='sm' icon={faShoppingBag} />
@@ -35,6 +36,8 @@ const NavBar = () => {
   const info = <FontAwesomeIcon size='sm' icon={faInfoCircle} />
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const toast = useToast()
   const cart = useSelector((store:any)=> store.productReducer.cart);
   const [isSticky, setIsSticky] = useState<boolean>(false);
 
@@ -50,6 +53,16 @@ const NavBar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleLogout = ()=>{
+    dispatch({type: USER_LOGOUT})
+    toast({
+      title: "Logout Successfull",
+      status: "success",
+      position: "top",
+      isClosable: true,
+    })
+  }
 
   return (
     <div style={{marginBottom: isSticky? "90px": "0px"}}>
@@ -78,17 +91,19 @@ const NavBar = () => {
         <Text>{search}</Text>
         <Text onClick={()=> navigate("/cart")}>{basket}<span style={{background:"black",color:"white",borderRadius:"50%",padding:"1px 4px"}}>{cart.length}</span></Text>
         <Menu>
-          <MenuButton>
+          <MenuButton color={isAuth || isAdmin ? "blue" : "black"}>
             {user}
           </MenuButton>
           <MenuList>
             <MenuGroup>
               {isAuth && <Text fontWeight="semibold" m="12px">Hi, <span style={{color:"blue"}}>{username}</span></Text>}
-              <MenuItem><Text>{home} My Account</Text></MenuItem>
+              {isAdmin && <Text fontWeight="semibold" m="12px" color="blue">Welcome Admin🙂</Text>}
+              {isAdmin===false && <MenuItem><Text>{home} My Account</Text></MenuItem>}
+              {isAdmin && <MenuItem onClick={()=> navigate("/admin")}><Text>{home} MANAGE DATA</Text></MenuItem>}
               <MenuItem onClick={()=> navigate("/cart")}><Text>{order} My Cart</Text></MenuItem>
               <MenuItem><Text>{baskets} My Orders</Text></MenuItem>
               <MenuItem onClick={()=> navigate("/payment")}><Text>{payment} Payments</Text></MenuItem>
-              {isAuth? <MenuItem><Text>{signout} Logout</Text></MenuItem> : <MenuItem onClick={()=> navigate("/login")}><Text>{signin} Login/SignUp</Text></MenuItem>}
+              {isAuth || isAdmin ? <MenuItem onClick={handleLogout}><Text>{signout} Logout</Text></MenuItem> : <MenuItem onClick={()=> navigate("/login")}><Text>{signin} Login/SignUp</Text></MenuItem>}
             </MenuGroup>
             <MenuDivider />
             <MenuGroup title='Help'>

@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl, FormLabel, Input, InputGroup, InputLeftElement, Select, Text, useToast } from '@chakra-ui/react'
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { signuptype } from '../constants'
@@ -38,7 +38,33 @@ const SignUp = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
-    dispatch(makingPost(formdata))
+    dispatch(makingPost(formdata)).then((res:any)=>{
+      dispatch({type:USER_SIGNUP_SUCCESS});
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 3000,
+        position: "bottom-right",
+        isClosable: true,
+      });
+      setFormdata(initialState)
+
+      setTimeout(() => {
+        navigate("/login")
+      }, 3000);
+
+
+  }).catch((error:any)=>{
+      dispatch({type: USER_FAIL})
+      toast({
+        title: "Something Error, Please try again!",
+        status: "error",
+        duration: 2000,
+        position: "bottom-left",
+        isClosable: true,
+      });
+  })
 
     
     
@@ -46,7 +72,7 @@ const SignUp = () => {
 
   
 
-  if(isAuth || isAdmin){
+  if(isAuth){
     return <Navigate to='/' />
   }
 
