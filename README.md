@@ -11,9 +11,9 @@
 - Status
 
 ## Contributors
-- https://github.com/Biswajit2595
-- https://github.com/Manikantkr-1004
-- https://github.com/rohitnayal12
+- Biswajit Roy -- https://github.com/Biswajit2595
+- Manikant Kumar -- https://github.com/Manikantkr-1004
+- Rohit Nayal -- https://github.com/rohitnayal12
 
 
 ## About the project
