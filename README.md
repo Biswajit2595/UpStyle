@@ -24,17 +24,18 @@ This project is a full stack application which focuses on e-commerce for men and
 ## Folder Structure
 
 --UPSTYLE--
--Components-
- --All Components Here--
--Pages--
- --All Pages Here
+
+- Components--
+  - All Components Here--
+- Pages--
+  - All Pages Here
 - Redux--
-  --All Redux Files Here--
+  - All Redux Files Here--
 - Routes--
-  --All Routes Here--
--api.Ts--
--Constants.Ts--
--index.Ts--
+  - All Routes Here--
+- api.Ts--
+- Constants.Ts--
+- index.Ts--
 
 ## User features
 - Login and signup
