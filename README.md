@@ -3,6 +3,7 @@
 
 - Contributors
 - About the project
+- Folder Structure
 - User features
 - Admin features
 - Screenshots
@@ -19,6 +20,21 @@
 ## About the project
 
 This project is a full stack application which focuses on e-commerce for men and women products. You can buy different products as per your body needs by exploring our website! You can also edit,update and add new users or products as admin(verified) on admin dashboard. So, login now  and start to shop.  
+
+## Folder Structure
+
+--UPSTYLE--
+           --Components-
+                 --All Components Here--
+           --Pages--
+                 --All Pages Here
+          -- Redux--
+                --All Redux Files Here--
+          -- Routes--
+                --All Routes Here--
+          --api.Ts--
+          --Constants.Ts--
+          --index.Ts--
 
 ## User features
 - Login and signup
