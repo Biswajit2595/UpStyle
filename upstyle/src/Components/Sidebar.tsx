@@ -79,14 +79,17 @@ export const Sidebar = () => {
 
   return (
     <VStack p={4} spacing={4} align="stretch" maxW="300px">
+      {((order)||(brand.length>0)||(category.length>0))?
       <Button
         onClick={handleClick}
         variant="outline"
         size="md"
         background="#DE6737"
+        _hover={{bg:"#DE6737"}}
       >
         Clear All
       </Button>
+      :""}
 
       <Heading fontSize="md" fontWeight="bold" color="black">
         Filter By Brand
