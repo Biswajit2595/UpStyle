@@ -152,9 +152,9 @@ const SingleProdMen = () => {
       </Text>
       <Flex w="50%" justifyContent="flex-start" gap={2}>
         {data?.Size?.map((el: any, ind: any) => (
-          <Text key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>
+          <Button key={ind} backgroundColor={"gray.300"} borderRadius={"50%"} p={2}>
             {el}
-          </Text>
+          </Button>
         ))}
       </Flex>
 
