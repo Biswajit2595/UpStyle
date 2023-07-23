@@ -1,7 +1,7 @@
 # warlike-current-5989
 ## Table of Content
 
-- Contributors-
+- Contributors
 - About the project
 - User features
 - Admin features
