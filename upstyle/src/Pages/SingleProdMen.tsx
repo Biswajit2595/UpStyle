@@ -22,7 +22,7 @@ const SingleProdMen = () => {
     axios
       .get(`https://upstyle-fq0x.onrender.com/mens/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLoading(false)
         setData(res.data);
       })

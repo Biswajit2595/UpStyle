@@ -127,7 +127,7 @@ export const getWomensuser=(paramObj:any)=>(dispatch:any)=>{
 export const deleteWomen=(id:number)=>(dispatch:any)=>{
   dispatch({type:GET_PRODUCT_REQUEST})
 
-  DeletWomenProd(id).then(()=>{
+  return DeletWomenProd(id).then(()=>{
     dispatch({type:DELETE_PRODUCT_SUCCESS})
     dispatch(getWomens())
   }).catch((error)=>{
@@ -138,7 +138,7 @@ export const deleteWomen=(id:number)=>(dispatch:any)=>{
 
 export const deleteMen=(id:number)=>(dispatch:any)=>{
   dispatch({type:GET_PRODUCT_REQUEST})
-  DeletMensProd(id).then(()=>{
+  return DeletMensProd(id).then(()=>{
     dispatch({type:DELETE_PRODUCT_SUCCESS})
     dispatch(getMens())
   }).catch((error)=>{
