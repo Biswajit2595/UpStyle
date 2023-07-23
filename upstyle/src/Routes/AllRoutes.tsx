@@ -16,6 +16,8 @@ import ContactPage from '../Pages/Contact'
 import EditProductWomen from '../Pages/EditProductWomen'
 import { NotFound } from '../Pages/NotFound'
 import PrivateRoute from '../Components/PrivateRoute'
+import SingleProdMen from '../Pages/SingleProdMen'
+import SingleWomen from '../Pages/SingleWomen'
 
 
 const AllRoutes = () => {
@@ -29,7 +31,8 @@ const AllRoutes = () => {
       <Route path='/login' element={<Login />}></Route>
       <Route path='/mens' element={<Men />}></Route>
       <Route path='/womens' element={<Women />}></Route>
-      <Route path='/singleproduct' element={<Product />}></Route>
+      <Route path='/singleproduct/men/:id' element={<SingleProdMen />}></Route>
+      <Route path='/singleproduct/women/:id' element={<SingleWomen />}></Route>
       <Route path='/signup' element={<SignUp />}></Route>
       <Route path='/contact' element={<ContactPage />}></Route>
       <Route path='/edit/:id' element={<EditProduct/>}></Route>
