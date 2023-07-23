@@ -10,7 +10,7 @@ const AdminList = (props: { name: string; data: ProductType[] }) => {
       <Heading size="xl" textAlign="center" mt="4">
         {name} Product
       </Heading>
-      <Table variant="striped" colorScheme="teal" mt="4">
+      <Table variant="striped" colorScheme="orange" mt="4">
         <Thead>
           <Tr>
             <Th display={{ base: 'none', md: 'table-cell', lg: 'table-cell' }}>ID</Th>

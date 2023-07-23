@@ -1,5 +1,5 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   Box,
   FormControl,
@@ -7,145 +7,119 @@ import {
   Input,
   Select,
   Button,
-  Tabs,
-  TabPanel,
-  useBreakpointValue,
-  Heading,
+  Center,
+  Flex,
+  useToast,
 } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { EditMensProd } from '../Redux/productReducer/action';
+import axios from 'axios';
 
 const EditProduct = () => {
-
+  const { singleMen } = useSelector((state:any) => ({
+    singleMen: state.productReducer.singleMen,
+  }));
+  const isAdmin=useSelector((state:any)=> state.authReducer.isAdmin)
+    const navigate=useNavigate()
+  const dispatch:any=useDispatch()
+  const [product, setProduct] = useState(singleMen)
   const { id }=useParams()
-  console.log(id)
-
-  const handleSubmit=()=>{
-
+  const toast=useToast()
+  console.log(isAdmin)
+  const fetchdata=(id:any)=>{
+    axios.get(`https://upstyle-fq0x.onrender.com/mens/${id}`)
+    .then(res=>{
+      setProduct(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
 
-  const handleChange=()=>{
+  useEffect(()=>{
+    // if(!isAdmin){
+    //   navigate("/login")
+    // }
+  
+    fetchdata(id)
+  },[dispatch,id])
 
+  const handleSubmit=(e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+    dispatch(EditMensProd(product,id)).then(()=>{
+      toast({
+          title: 'Product Updated.',
+          description: "Product has been Updated.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+      })
+      navigate("/admin")
+    })
   }
 
-  const tabSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
+  const handleChange=(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
+    const { name, value,type } = e.target;
+    setProduct((prevProduct:any) => ({
+      ...prevProduct,
+      [name]: type === "number" ? +value : name === "Price" || name === "Rating" || name === "Stock" ? +value : value,
+    }));
+  }
 
-  return (    
-    <Heading>{id} Men</Heading>       
-  // <Box>
-//     <Heading>{id}</Heading>
-//       <Tabs m="auto" variant="enclosed"  size={tabSize}>
-//   <TabPanel m="auto" w={['95%', '70%', '50%']}>
-//   <Box
-//     bgColor="#75909d"
-//     p={6}
-//     borderRadius="md"
-//     mt={4}
-//     as="form"
-//     onSubmit={handleSubmit}
-//   >
-//     <FormControl>
-//       <FormLabel>Title</FormLabel>
-//       <Input
-//         type="text"
-//         name="Title"
-//         bgColor={"#f2f2f3"}
-//         // value={Title}
-//         placeholder="Title"
-//         onChange={handleChange}
-//         required
-//       />
-//     </FormControl>
-//     <FormControl>
-//       <FormLabel>Image Link</FormLabel>
-//       <Input
-//         type="text"
-//         name="image"
-//         bgColor={"#f2f2f3"}
-//         // value={image}
-//         placeholder="Image link"
-//         onChange={handleChange}
-//         required
-//       />
-//     </FormControl>
-//     <FormControl>
-//       <FormLabel>Brand</FormLabel>
-//       <Input
-//         type="text"
-//         name="Brand"
-//         bgColor={"#f2f2f3"}
-//         // value={Brand}
-//         placeholder="Brand"
-//         onChange={handleChange}
-//         required
-//       />
-//     </FormControl>
-//     <FormControl>
-//       <FormLabel>Price</FormLabel>
-//       <Input
-//         type="number"
-//         name="Price"
-//         bgColor={"#f2f2f3"}
-//         // value={Price}
-//         placeholder="Price"
-//         onChange={handleChange}
-//         required
-//       />
-//     </FormControl>
-//     <FormControl>
-//       <FormLabel>Stock</FormLabel>
-//       <Input
-//         type="number"
-//         name="Stock"
-//         bgColor={"#f2f2f3"}
-//         // value={Stock}
-//         placeholder="Stock"
-//         onChange={handleChange}
-//         required
-//       />
-//     </FormControl>
-//     <FormControl>
-//       <FormLabel>Rating</FormLabel>
-//       <Select
-//         name="Rating"
-//         // value={Rating}
-//         bgColor={"#f2f2f3"}
-//         onChange={handleChange}
-//         required
-//       >
-//         <option value="">Select Rating</option>
-//         <option value="1">1</option>
-//         <option value="2">2</option>
-//         <option value="3">3</option>
-//         <option value="4">4</option>
-//         <option value="5">5</option>
-//       </Select>
-//     </FormControl>
-//     <FormControl>
-//       <FormLabel>Category</FormLabel>
-//       <Select
-//         name="Category"
-//         bgColor={"#f2f2f3"}
-//         onChange={handleChange}
-//         required
-//       >
-//         <option value="">Select Category</option>
-//         <option value="Jeans">Jeans</option>
-//         <option value="Shirt">Shirt</option>
-//         <option value="Jacket">Jacket</option>
-//         <option value="Shorts">Shorts</option>
-//         <option value="Lahanga">Lahanga</option>
-//         <option value="Saree">Saree</option>
-//         <option value="Skirts">Skirts</option>
-//         <option value="Gowns">Gowns</option>
-//       </Select>
-//     </FormControl>
-//     <Button type="submit" mt={4}>
-//       Add Product
-//     </Button>
-//   </Box>
-// </TabPanel>
-// </Tabs>
-// </Box>
-  )
-}
+  const { Brand, Category, Price, Rating, Stock, Title, image } = product;
 
-export default EditProduct
+  return (
+    <Box px={[4, 8, 12]} py={8}>
+      <Flex justifyContent="center">
+        <Box bgColor="#789bac" borderRadius={10} boxShadow="lg" p={5} w={['95%', '80%', '50%']}>
+          <form onSubmit={handleSubmit}>
+            <FormControl mb={4}>
+              <FormLabel>ID</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="Id" value={id}  />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>TITLE</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="Title" value={Title} onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Image</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="image" value={image} onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Brand</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="Brand" value={Brand} onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Price</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="Price" value={Price} onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Rating</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="Rating" value={Rating} onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Stock</FormLabel>
+              <Input type="text" bgColor={"#f2f2f3"} name="Stock" value={Stock} onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Category</FormLabel>
+              <Select name="Category" bgColor={"#f2f2f3"} value={Category} onChange={handleChange}>
+                <option value="Jeans">Jeans</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Jacket">Jacket</option>
+                <option value="Shorts">Shorts</option>
+              </Select>
+            </FormControl>
+            <Center>
+              <Button type="submit" variant="solid">
+                EDIT PRODUCT
+              </Button>
+            </Center>
+          </form>
+        </Box>
+      </Flex>
+    </Box>
+  );
+};
+
+export default EditProduct;
