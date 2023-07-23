@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react';
 
 const About = () => {
+
+  useEffect(() => {
+    document.body.style.background = "#F2F2F3"
+  }, [])
+
   return (
     <Box maxW="70%" mx="auto">
       <Heading>Welcome to Upstyle - Your Fashion Destination!</Heading>

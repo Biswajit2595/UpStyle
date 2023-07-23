@@ -8,8 +8,13 @@ import { styled } from 'styled-components'
 import {  getWomensuser } from '../Redux/productReducer/action'
 import { Sidebar2 } from '../Components/Sidebar2'
 import { Link, useSearchParams } from 'react-router-dom'
+import { CART_CHANGE } from '../Redux/actionTypes';
 
 const Women = () => {
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+  }, [])
 
   const toast = useToast();
   const imageSize = useBreakpointValue({ base: '120px', sm: '150px', md: '200px', lg: '250px' });
@@ -43,6 +48,7 @@ const Women = () => {
       }
     };
     dispatch(getWomensuser(paramObj))
+    document.body.style.background = "#F2F2F3"
   },[searchParams])
   
   
@@ -77,6 +83,7 @@ const Women = () => {
         isClosable: true,
         position:"top"
       });
+      dispatch({type:CART_CHANGE})
     }
   };
 

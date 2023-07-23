@@ -1,6 +1,6 @@
 
 import { ProductType } from "../../constants";
-import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SINGLE_MEN, GET_PRODUCT_SINGLE_WOMEN, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS, PRODUCT_REQUEST_FAILURE } from "../actionTypes";
+import { CART_CHANGE, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SINGLE_MEN, GET_PRODUCT_SINGLE_WOMEN, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_REQUEST, GET_PRODUCT_WOMEN_SUCCESS, PRODUCT_REQUEST_FAILURE } from "../actionTypes";
 
  type AuthAction = {
     type: string;
@@ -10,6 +10,7 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
  type AuthState = {
     isLoading: boolean;
     isError: boolean;
+    cartlength: boolean;
     mens: Array<ProductType>;
     womens: Array<ProductType>;
     singleMen:Array<ProductType>;
@@ -22,6 +23,7 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
   const initialState: AuthState = {
     isLoading: false,
     isError: false,
+    cartlength: false,
     mens: [],
     womens: [],
     singleMen:[],
@@ -33,6 +35,11 @@ import { GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_REQUEST, GET_PRODUCT_MEN_SUCCE
   
   export const productReducer = (state: AuthState = initialState, action: AuthAction) => {
     switch (action.type) {
+      case CART_CHANGE: 
+      return {
+        ...state,cartlength: !state.cartlength
+      }
+
       case GET_PRODUCT_MEN_REQUEST:
         return {
           ...state,

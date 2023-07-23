@@ -18,6 +18,8 @@ import {
   useBreakpointValue,
   Skeleton,
   useToast,
+  InputGroup,
+  InputLeftElement,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,6 +60,11 @@ const Admin = () => {
   const [gender,setGender]=useState("Men");
   const navigate=useNavigate()
   const toast=useToast()
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+    document.body.style.backgroundSize = "cover";
+  }, [])
 
   useEffect(()=>{
     // if(!isAdmin){
@@ -167,67 +174,82 @@ const Admin = () => {
             >
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Title</FormLabel>
+                <InputGroup>
+                <InputLeftElement>✏️</InputLeftElement>
                 <Input
                   type="text"
                   name="Title"
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   value={Title}
                   placeholder="Title"
                   onChange={handleChange}
                   required
                 />
+                </InputGroup>
               </FormControl>
               <br/>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Image Link</FormLabel>
+                <InputGroup>
+                <InputLeftElement>✏️</InputLeftElement>
                 <Input
                   type="text"
                   name="image"
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   value={image}
                   placeholder="Image link"
                   onChange={handleChange}
                   required
                 />
+                </InputGroup>
               </FormControl>
               <br/>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Brand</FormLabel>
+                <InputGroup>
+                <InputLeftElement>✏️</InputLeftElement>
                 <Input
                   type="text"
                   name="Brand"
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   value={Brand}
                   placeholder="Brand"
                   onChange={handleChange}
                   required
                 />
+                </InputGroup>
               </FormControl>
               <br/>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Price</FormLabel>
+                <InputGroup>
+                <InputLeftElement>✏️</InputLeftElement>
                 <Input
                   type="number"
                   name="Price"
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   value={Price}
                   placeholder="Price"
                   onChange={handleChange}
                   required
                 />
+                </InputGroup>
               </FormControl>
               <br/>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Stock</FormLabel>
+                <InputGroup>
+                <InputLeftElement>✏️</InputLeftElement>
                 <Input
                   type="number"
                   name="Stock"
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   value={Stock}
                   placeholder="Stock"
                   onChange={handleChange}
                   required
                 />
+                </InputGroup>
               </FormControl>
               <br/>
               <FormControl>
@@ -235,7 +257,7 @@ const Admin = () => {
                 <Select
                   name="Rating"
                   value={Rating}
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   onChange={handleChange}
                   required
                 >
@@ -250,7 +272,7 @@ const Admin = () => {
               <br/>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Gender</FormLabel>
-                <Select name="gender" value={gender} bgColor={"#f2f2f3"} onChange={handleGender}>
+                <Select name="gender" value={gender} bgColor={"#ffffff"} onChange={handleGender}>
                   <option value="Men">Men</option>
                   <option value="Women">Women</option>
                 </Select>
@@ -260,7 +282,7 @@ const Admin = () => {
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Category</FormLabel>
                 <Select
                   name="Category"
-                  bgColor={"#f2f2f3"}
+                  bgColor={"#ffffff"}
                   value={Category}
                   onChange={handleChange}
                   required

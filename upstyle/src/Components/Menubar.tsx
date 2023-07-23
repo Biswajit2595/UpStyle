@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logo from "../Components/UPSTYLE_LOGO.png"
 import { useNavigate } from 'react-router-dom';
 import { USER_LOGOUT } from '../Redux/actionTypes';
+import { useEffect, useState } from 'react';
 
   interface props{
     isOpen: boolean;
@@ -32,9 +33,21 @@ export function Menubar({ isOpen, onClose }:props) {
   const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
   const isAdmin = useSelector((store:any)=> store.authReducer.isAdmin);
   const username = useSelector((store:any)=> store.authReducer.user.username);
+  const cartlength = useSelector((store:any)=> store.productReducer.cartlength);
   const navigate = useNavigate()
   const toast = useToast();
   const dispatch:any = useDispatch()
+  const [data,setData] = useState([]);
+
+  useEffect(()=>{
+    let cartdata= localStorage.getItem("cart");
+    
+    if(cartdata){
+      setData(JSON.parse(cartdata));
+    }else{
+      setData([])
+    }
+  },[cartlength])
 
   const handleLogout = ()=>{
     dispatch({type: USER_LOGOUT})
@@ -72,7 +85,7 @@ export function Menubar({ isOpen, onClose }:props) {
             {isAdmin && <Text fontWeight="bold" m="12px" color="blue">Welcome Admin🙂</Text>}
             {isAdmin===false && <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button>}
             {isAdmin && <Button onClick={()=> navigate("/admin")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>MANAGE DATA</Button>}<br/>
-            <Button onClick={()=> navigate("/cart")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart</Button><br/>
+            <Button onClick={()=> navigate("/cart")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart {isAuth && <span style={{background:"black",color:"white",border:"1px solid black",borderRadius:"50%",padding:"2px 8px"}}>{data.length}</span>}</Button><br/>
             <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={baskets}>My Orders</Button><br/>
             <Button onClick={()=> navigate("/payment")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
             <Accordion allowMultiple border="none">

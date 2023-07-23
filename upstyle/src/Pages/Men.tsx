@@ -19,8 +19,13 @@ import { ProductType } from "../constants";
 import { getMensuser } from "../Redux/productReducer/action";
 import { Sidebar } from "../Components/Sidebar";
 import { Link, useSearchParams } from "react-router-dom";
+import { CART_CHANGE } from "../Redux/actionTypes";
 
 const Men = () => {
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+  }, [])
 
   const imageSize = useBreakpointValue({ base: '120px', md: '150px', lg: '200px' });
   const titleSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
@@ -50,6 +55,7 @@ const Men = () => {
     };
     // console.log(paramObj);
     dispatch(getMensuser(paramObj));
+    document.body.style.background = "#F2F2F3"
   }, [searchParams]);
 
    console.log(mens);
@@ -89,6 +95,7 @@ const handleAddToCart = (product: ProductType) => {
       isClosable: true,
       position:"top"
     });
+    dispatch({type:CART_CHANGE})
   }
 };
 
