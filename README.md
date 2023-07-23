@@ -12,6 +12,7 @@
 
 ## Contributors
 - https://github.com/Biswajit2595
+- https://github.com/rohitnayal12
 
 
 ## About the project
