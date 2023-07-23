@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { Tr, Td, Link, Button, useBreakpointValue } from '@chakra-ui/react';
+import { Tr, Td, Link, Button, useBreakpointValue, useToast } from '@chakra-ui/react';
 import { Link as Editlink } from 'react-router-dom'
 import { ProductType } from '../constants';
 import { deleteMen, deleteWomen } from '../Redux/productReducer/action';
@@ -16,14 +16,31 @@ const ProdTable = ( {id, Brand, Category, Price, Quantity, Rating, Size, Stock, 
   const isTablet = useBreakpointValue({ base: false, md: true, lg: false });
   const isDesktop = useBreakpointValue({ base: false, md: false, lg: true });
   const dispatch:any=useDispatch()
+  const toast=useToast()
 
   const handleDelete=()=>{
     if(name==="Mens")
     {
-      dispatch(deleteMen(id))
+      dispatch(deleteMen(id)).then(()=>{
+        toast({
+          title: 'Product Deleted.',
+          description: "Product has been Deleted.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+      })
+      })
     }
     else{
-      dispatch(deleteWomen(id))
+      dispatch(deleteWomen(id)).then(()=>{
+        toast({
+          title: 'Product Deleted.',
+          description: "Product has been Deleted.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+      })
+      })
     }
   }
   return (

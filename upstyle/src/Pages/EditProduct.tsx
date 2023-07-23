@@ -71,38 +71,38 @@ const EditProduct = () => {
   return (
     <Box px={[4, 8, 12]} py={8}>
       <Flex justifyContent="center">
-        <Box bgColor="#789bac" borderRadius={10} boxShadow="lg" p={5} w={['95%', '80%', '50%']}>
+        <Box bgColor="#000000" borderRadius={10} boxShadow="lg" p={5} w={['95%', '80%', '50%']}>
           <form onSubmit={handleSubmit}>
             <FormControl mb={4}>
-              <FormLabel>ID</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>ID</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="Id" value={id}  />
             </FormControl>
             <FormControl mb={4}>
-              <FormLabel>TITLE</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>TITLE</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="Title" value={Title} onChange={handleChange} />
             </FormControl>
-            <FormControl mb={4}>
-              <FormLabel>Image</FormLabel>
+            <FormControl  mb={4}>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>Image</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="image" value={image} onChange={handleChange} />
             </FormControl>
             <FormControl mb={4}>
-              <FormLabel>Brand</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>Brand</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="Brand" value={Brand} onChange={handleChange} />
             </FormControl>
             <FormControl mb={4}>
-              <FormLabel>Price</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>Price</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="Price" value={Price} onChange={handleChange} />
             </FormControl>
             <FormControl mb={4}>
-              <FormLabel>Rating</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>Rating</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="Rating" value={Rating} onChange={handleChange} />
             </FormControl>
             <FormControl mb={4}>
-              <FormLabel>Stock</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>Stock</FormLabel>
               <Input type="text" bgColor={"#f2f2f3"} name="Stock" value={Stock} onChange={handleChange} />
             </FormControl>
             <FormControl mb={4}>
-              <FormLabel>Category</FormLabel>
+              <FormLabel color="#f2f2f3" fontWeight={'bold'}>Category</FormLabel>
               <Select name="Category" bgColor={"#f2f2f3"} value={Category} onChange={handleChange}>
                 <option value="Jeans">Jeans</option>
                 <option value="Shirt">Shirt</option>
@@ -111,7 +111,7 @@ const EditProduct = () => {
               </Select>
             </FormControl>
             <Center>
-              <Button type="submit" variant="solid">
+              <Button color="#f2f2f3" fontWeight={'bold'} type="submit" variant="solid">
                 EDIT PRODUCT
               </Button>
             </Center>
