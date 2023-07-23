@@ -42,7 +42,6 @@ deployed link for demo:-
 ## Tech-stack
 
 - Type Script
-- Mongoose
 - HTML
 - CSS
 - Redux
