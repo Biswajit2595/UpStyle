@@ -57,6 +57,7 @@ export function Menubar({ isOpen, onClose }:props) {
       position: "top",
       isClosable: true,
     })
+    onClose()
   }
 
   const home = <FontAwesomeIcon size='sm' icon={faHome} />
@@ -78,16 +79,16 @@ export function Menubar({ isOpen, onClose }:props) {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader><img onClick={()=> navigate("/")} width="45%" src={logo} alt='logo' /></DrawerHeader>
+          <DrawerHeader><img onClick={()=> {onClose(); navigate("/")}} width="45%" src={logo} alt='logo' /></DrawerHeader>
 
           <DrawerBody>
             {isAuth && <Text fontWeight="bold" m="12px">Hi, <span style={{color:"blue"}}>{username}</span></Text>}
             {isAdmin && <Text fontWeight="bold" m="12px" color="blue">Welcome Admin🙂</Text>}
             {isAdmin===false && <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button>}
-            {isAdmin && <Button onClick={()=> navigate("/admin")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>MANAGE DATA</Button>}<br/>
-            <Button onClick={()=> navigate("/cart")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart {isAuth && <span style={{background:"black",color:"white",border:"1px solid black",borderRadius:"50%",padding:"2px 8px"}}>{data.length}</span>}</Button><br/>
+            {isAdmin && <Button onClick={()=>{onClose(); navigate("/admin")}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>MANAGE DATA</Button>}<br/>
+            <Button onClick={()=> {onClose(); navigate("/cart")}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart {isAuth && <span style={{background:"black",color:"white",border:"1px solid black",borderRadius:"50%",padding:"2px 8px"}}>{data.length}</span>}</Button><br/>
             <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={baskets}>My Orders</Button><br/>
-            <Button onClick={()=> navigate("/payment")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
+            <Button onClick={()=> {onClose(); navigate("/payment");}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
             <Accordion allowMultiple border="none">
               <AccordionItem border="none">
                 <h2>
@@ -99,8 +100,8 @@ export function Menubar({ isOpen, onClose }:props) {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} border="none">
-                <Button onClick={()=> navigate("/mens")} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={shirt}>MENS</Button><br/>
-                <Button onClick={()=> navigate("/womens")} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={shirt}>WOMENS</Button>
+                <Button onClick={()=> {onClose(); navigate("/mens")}} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={shirt}>MENS</Button><br/>
+                <Button onClick={()=> {onClose(); navigate("/womens")}} w="100%" mb="3px" variant="" borderRadius="0px" borderBottom="1px solid grey" justifyContent="flex-start" leftIcon={shirt}>WOMENS</Button>
                 </AccordionPanel>
               </AccordionItem>
               </Accordion>
@@ -120,7 +121,7 @@ export function Menubar({ isOpen, onClose }:props) {
                 </AccordionPanel>
               </AccordionItem>
               </Accordion>
-              <Button onClick={()=> navigate("/about")} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={info}>ABOUT US</Button><br/>
+              <Button onClick={()=> {onClose(); navigate("/about")}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={info}>ABOUT US</Button><br/>
           </DrawerBody>
 
           <DrawerFooter>

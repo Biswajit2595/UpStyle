@@ -3,7 +3,7 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { Box, Image, Badge, Text, Button, Flex, Grid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from "../constants";
 import { CART_CHANGE } from "../Redux/actionTypes";
 import { useDispatch } from "react-redux";
@@ -20,9 +20,17 @@ const SingleProdMen = () => {
   const [loading,setLoading]=useState(false)
   const [selectedImage, setSelectedImage] = useState("");
   const dispatch:any = useDispatch()
+  const [datalen,setDataLen] = useState<String[]>([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+    let datatit = localStorage.getItem("cartdata");
+    let len =[]
+    if(datatit){
+    len = JSON.parse(datatit);
+    setDataLen(len)
+  }
   }, [])
 
   const fetchdata = (id:any) => {
@@ -52,19 +60,26 @@ const SingleProdMen = () => {
       cart = JSON.parse(existingCartItems);
     }
 
+    let datatit = localStorage.getItem("cartdata");
+  let len =[]
+  if(datatit){
+    len = JSON.parse(datatit);
+    setDataLen(len)
+  }
+  if(len.includes(product.Title)){
+
+  }else{
+    len.push(product.Title);
+    localStorage.setItem("cartdata", JSON.stringify(len));
+  }
+
     // Check if the product is already in the cart
     const isProductInCart = cart.some(
       (item: any) => item.Title === product.Title
     );
 
     if (isProductInCart) {
-      toast({
-        title: "Product already in the cart",
-        status: "warning",
-        duration: 3000, // 3 seconds
-        isClosable: true,
-        position:"top"
-      });
+      navigate("/cart")
     } else {
       // Add the product to the cart
       cart.push(product);
@@ -179,7 +194,7 @@ const SingleProdMen = () => {
         maxWidth="300px"
         alignSelf="center"
       >
-        Add to Cart
+        {datalen.includes(data.Title) ? "Go to Cart" : "Add to Cart"}
       </Button>
     </Box>
   </Flex>

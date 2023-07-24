@@ -130,6 +130,8 @@ const Admin = () => {
           duration: 9000,
           isClosable: true,
   })
+  dispatch(getMens())
+    
       })
     }else{
       dispatch(AddWomen(product)).then(()=>{
@@ -140,6 +142,7 @@ const Admin = () => {
           duration: 9000,
           isClosable: true,
   })
+  dispatch(getWomens())
       })
     }
 

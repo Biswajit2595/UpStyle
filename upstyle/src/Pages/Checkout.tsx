@@ -73,6 +73,7 @@ const Checkout = () => {
 
   const handleClose = ()=>{
     localStorage.removeItem("cart");
+    localStorage.removeItem("cartdata");
     dispatch({type:CART_CHANGE})
     onClose();
     navigate("/")

@@ -24,15 +24,26 @@ const Cart = () => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const removeFromCart = (index: number) => {
+  const removeFromCart = (index: number,title:string) => {
     const updatedCart = [...cart];
     updatedCart.splice(index, 1);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+
     dispatch({type:CART_CHANGE})
+
+    let datatit = localStorage.getItem("cartdata");
+    let len =[]
+    if(datatit){
+      len = JSON.parse(datatit);
+    }
+
+    let newlen = len.filter((item:any)=> item!== title);
+    localStorage.setItem("cartdata", JSON.stringify(newlen));
+
   };
 
-  return ( <Stack m="auto" w="80%" direction={['column', 'row']} spacing="24px" mt="30px">
+  return ( <Stack m="auto" w="80%" direction={['column', 'row']} spacing="24px" mt="70px" mb="120px">
     <Helmet>
         <title>Cart | UPSTYLE</title>
       </Helmet>
@@ -116,7 +127,7 @@ const Cart = () => {
           <Button
             colorScheme="red"
             onClick={() => {
-              removeFromCart(index);
+              removeFromCart(index,el.Title);
             }}
           >
             Remove
@@ -126,8 +137,8 @@ const Cart = () => {
     )):(
       <Box >
         <Box marginTop="200px" margin="auto" height={"100%"} >
-        <Image width="100%" src='https://assets.materialup.com/uploads/87d4df96-a55f-4f4b-9a17-a696eded97f3/preview.gif'/>
-        <Heading fontSize="initial" marginLeft="28%" >Your Cart is Empty</Heading>
+        <Image margin="auto" width="70%" src='https://cdn-icons-png.flaticon.com/512/2037/2037021.png'/>
+        <Text fontWeight="bold" color="#3762CC" fontFamily="stencil" textAlign="center" fontSize="20px" >Your Cart is Empty</Text>
         </Box>
       </Box>
     )}
@@ -135,7 +146,7 @@ const Cart = () => {
   {/* Cart Total */}
   <Spacer />
   <Box flex="1" minW="250px"> {/* Add min-width to prevent collapsing */}
-    <CartTotal cartItems={cart} />
+    <CartTotal cart={cart} cartItems={cart} />
   </Box>
 </Stack>
 );
