@@ -34,7 +34,7 @@ const Men = () => {
     len = JSON.parse(datatit);
     setDataLen(len)
   }
-  }, [])
+  }, [datalen])
 
   const imageSize = useBreakpointValue({ base: '120px', md: '150px', lg: '200px' });
   const titleSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
@@ -94,6 +94,7 @@ const handleAddToCart = (product: ProductType) => {
 
   }else{
     len.push(product.Title);
+    setDataLen(len)
     localStorage.setItem("cartdata", JSON.stringify(len));
   }
 

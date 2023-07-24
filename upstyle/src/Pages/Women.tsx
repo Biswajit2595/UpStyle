@@ -32,7 +32,7 @@ const Women = () => {
     len = JSON.parse(datatit);
     setDataLen(len)
   }
-  }, [])
+  }, [datalen])
 
 
 
@@ -96,6 +96,7 @@ const Women = () => {
 
   }else{
     len.push(product.Title);
+    setDataLen(len)
     localStorage.setItem("cartdata", JSON.stringify(len));
   }
 
