@@ -1,7 +1,7 @@
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-const CartTotal = ({ cartItems }:any) => {
+const CartTotal = ({ cart,cartItems }:any) => {
 //   Calculate the total price by multiplying the price with the quantity for each item
   const totalPrice = cartItems.reduce((total:any, item:any) => total + item.Price * item.Quantity, 0);
 
@@ -32,7 +32,7 @@ const CartTotal = ({ cartItems }:any) => {
         Final Total: ${ totalPrice>0 ? finalTotal.toFixed(2):0}
         </Text>
         <Link to={"/payment"}>
-        <Button w="100%" _hover={{color:"white" ,bg:"#48822d"}} color="white" bg="#f56b33" mt={4}>Proceed To Checkout</Button>
+        <Button isDisabled={cart.length===0} w="100%" _hover={{color:"white" ,bg:"#ff4800"}} color="white" bg="#f56b33" mt={4}>Proceed To Checkout</Button>
         </Link>
     </Box>
     );

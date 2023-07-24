@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -16,14 +16,22 @@ import { ProductType } from '../constants'
 import { styled } from 'styled-components'
 import {  getWomensuser } from '../Redux/productReducer/action'
 import { Sidebar2 } from '../Components/Sidebar2'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { CART_CHANGE } from '../Redux/actionTypes';
 import { Helmet } from "react-helmet";
 
 const Women = () => {
 
+  const [datalen,setDataLen] = useState<String[]>([]);
+
   useEffect(() => {
     document.body.style.background = "#F2F2F3"
+    let datatit = localStorage.getItem("cartdata");
+    let len =[]
+    if(datatit){
+    len = JSON.parse(datatit);
+    setDataLen(len)
+  }
   }, [])
 
 
@@ -43,6 +51,7 @@ const Women = () => {
   });
   let skel = new Array(8).fill(0);
   const btnSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
+  const navigate = useNavigate()
 
   const dispatch: any = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -77,19 +86,26 @@ const Women = () => {
       cart = JSON.parse(existingCartItems);
     }
 
+    let datatit = localStorage.getItem("cartdata");
+  let len =[]
+  if(datatit){
+    len = JSON.parse(datatit);
+    setDataLen(len)
+  }
+  if(len.includes(product.Title)){
+
+  }else{
+    len.push(product.Title);
+    localStorage.setItem("cartdata", JSON.stringify(len));
+  }
+
     // Check if the product is already in the cart
     const isProductInCart = cart.some(
       (item: any) => item.Title === product.Title
     );
 
     if (isProductInCart) {
-      toast({
-        title: "Product already in the cart",
-        status: "warning",
-        duration: 3000, // 3 seconds
-        isClosable: true,
-        position: "top",
-      });
+      navigate("/cart")
     } else {
       // Add the product to the cart
       cart.push(product);
@@ -192,6 +208,7 @@ const Women = () => {
                     <Button
                       background="#DE6737"
                       size="md"
+                      color="white"
                       _hover={{bg:"#DE6737"}}
                       onClick={() =>
                         handleAddToCart({
@@ -209,7 +226,7 @@ const Women = () => {
                         })
                       }
                     >
-                      Add to Cart
+                      {datalen.includes(Title) ? "Go to Cart" : "Add to Cart"}
                     </Button>
                   </VStack>
                 </Box>
