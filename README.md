@@ -56,11 +56,13 @@ Home-Page--
 
 Sign-up-Page--
 
-![sign-up](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/a140da8f-a981-4538-a3be-1a520a3e87e6)
+![Sigin-up-user](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/e3e3ad7b-0614-4526-ba17-c1541fcac9b8)
+
 
 Log-in-Page--
 
-![log-in](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/f8045342-7616-4319-adc0-4eb75acc97c7)
+![Log-in-user](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/f4bf27e6-a9a0-4fb0-bfa8-979778e7a015)
+
 
 Men-Product-Page--
 
