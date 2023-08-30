@@ -30,14 +30,16 @@ import { useEffect, useState } from 'react';
 
 export function Menubar({ isOpen, onClose }:props) {
 
-  const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
-  const isAdmin = useSelector((store:any)=> store.authReducer.isAdmin);
+  const isAuth = JSON.parse(useSelector((store:any)=> store.authReducer.isAuth));
+  const isAdmin = JSON.parse(useSelector((store:any)=> store.authReducer.isAdmin));
   const username = useSelector((store:any)=> store.authReducer.user.username);
   const cartlength = useSelector((store:any)=> store.productReducer.cartlength);
   const navigate = useNavigate()
   const toast = useToast();
   const dispatch:any = useDispatch()
   const [data,setData] = useState([]);
+  const purchased = Number(localStorage.getItem("purchased")) || 0;
+
 
   useEffect(()=>{
     let cartdata= localStorage.getItem("cart");
@@ -68,6 +70,8 @@ export function Menubar({ isOpen, onClose }:props) {
   const signout = <FontAwesomeIcon size='sm' icon={faSignOutAlt} />
   const info = <FontAwesomeIcon size='sm' icon={faInfoCircle} />
   const shirt = <FontAwesomeIcon size='lg' icon={faShirt} />
+  
+
     
 
     return (
@@ -84,10 +88,10 @@ export function Menubar({ isOpen, onClose }:props) {
           <DrawerBody>
             {isAuth && <Text fontWeight="bold" m="12px">Hi, <span style={{color:"blue"}}>{username}</span></Text>}
             {isAdmin && <Text fontWeight="bold" m="12px" color="blue">Welcome Admin🙂</Text>}
-            {isAdmin===false && <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button>}
+            {isAdmin===false && <Button w="100%" onClick={()=> {onClose(); navigate("/")}} mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>My Account</Button>}
             {isAdmin && <Button onClick={()=>{onClose(); navigate("/admin")}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={home}>MANAGE DATA</Button>}<br/>
             <Button onClick={()=> {onClose(); navigate("/cart")}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={order}>My Cart {isAuth && <span style={{background:"black",color:"white",border:"1px solid black",borderRadius:"50%",padding:"2px 8px"}}>{data.length}</span>}</Button><br/>
-            <Button w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={baskets}>My Orders</Button><br/>
+            <Button w="100%" mb="3px"  onClick={()=> {onClose(); navigate("/")}} variant="" justifyContent="flex-start" leftIcon={baskets}>My Orders{(isAuth || isAdmin) && `:- ${purchased}`}</Button><br/>
             <Button onClick={()=> {onClose(); navigate("/payment");}} w="100%" mb="3px" variant="" justifyContent="flex-start" leftIcon={payment}>My Payment</Button><br/>
             <Accordion allowMultiple border="none">
               <AccordionItem border="none">
@@ -125,7 +129,7 @@ export function Menubar({ isOpen, onClose }:props) {
           </DrawerBody>
 
           <DrawerFooter>
-          {isAuth || isAdmin ? <Button onClick={handleLogout} w="100%" variant="solid" colorScheme='red' justifyContent="flex-start" leftIcon={signout}>Logout</Button>: <Button onClick={()=> navigate("/login")} w="100%" variant="solid" colorScheme='blue' justifyContent="flex-start" leftIcon={signin}>SignUp/Login</Button>}
+          {isAuth || isAdmin ? <Button onClick={handleLogout} w="100%" variant="solid" colorScheme='red' justifyContent="flex-start" leftIcon={signout}>Logout</Button>: <Button onClick={()=> {navigate("/login"); onClose()}} w="100%" variant="solid" colorScheme='blue' justifyContent="flex-start" leftIcon={signin}>SignUp/Login</Button>}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

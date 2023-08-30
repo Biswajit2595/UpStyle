@@ -170,18 +170,8 @@ const Admin = () => {
         <TabPanels >
 
           <TabPanel m="auto" w={['95%', '70%', '50%']}>
-            <Box
-              bgColor="#000000"
-              p={6}
-              m="auto"
-              borderRadius="30px"
-              mt={4}
-              w="500px"
-              padding={10}
-              as="form"
-              onSubmit={handleSubmit}
-            >
-              <Heading marginLeft="30%" color="#f2f2f3">Add Product</Heading>
+            <Box onSubmit={handleSubmit} m="auto" bgColor="#000000" borderRadius={10} boxShadow="lg" p={5}  w={{base:"290px",sm:"350px",md:"400px",lg:"500px",xl:"500px"}} as="form"  >
+              <Heading m="auto" color="#f2f2f3">Add Product</Heading>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Title</FormLabel>
                 <InputGroup>

@@ -62,6 +62,8 @@ const Women = () => {
       womens: store.productReducer.womens,
     }
   });
+  const isAuth = JSON.parse(useSelector((store:any)=> store.authReducer.isAuth));
+  const isAdmin = JSON.parse(useSelector((store:any)=> store.authReducer.isAdmin));
 
 
   useEffect(() => {
@@ -206,7 +208,7 @@ const Women = () => {
                     </Flex>
                     {/* <Text>Available Sizes: {Size.join(', ')}</Text> */}
 
-                    <Button
+                    {isAdmin || isAuth ? <Button
                       background="#DE6737"
                       size="md"
                       color="white"
@@ -228,7 +230,7 @@ const Women = () => {
                       }
                     >
                       {datalen.includes(Title) ? "Go to Cart" : "Add to Cart"}
-                    </Button>
+                    </Button>: <Button onClick={()=> navigate("/login")} bg="#DE6737" _hover={{bg:"#DE6737"}} size="md" color="white">Login First</Button>}
                   </VStack>
                 </Box>
               )

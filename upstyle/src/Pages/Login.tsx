@@ -1,10 +1,12 @@
-import { Button, Flex, FormControl, FormLabel, Input, InputGroup, InputLeftElement, Text, useToast } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Input, InputGroup, InputLeftElement, InputRightElement, Text, useToast } from '@chakra-ui/react'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { ADMIN_SUCCESS, USER_FAIL, USER_LOADING, USER_LOGIN_SUCCESS } from '../Redux/actionTypes'
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
 
@@ -12,7 +14,11 @@ const Login = () => {
   const [password,setPassword] = useState("");
   const [userdata,setUserData] = useState([]);
   const toast = useToast()
-  const location = useLocation()
+  const location = useLocation();
+  const [show,setShow] = useState(false);
+
+  const openeye = <FontAwesomeIcon size='sm' icon={faEye} />
+  const closeye = <FontAwesomeIcon size='sm' icon={faEyeSlash} />
 
   useEffect(() => {
     document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
@@ -49,7 +55,7 @@ const Login = () => {
 
   function checkEmail(){
     if(email==="admin@admin.com" && password==="admin"){
-      dispatch({type:ADMIN_SUCCESS})
+      dispatch({type:ADMIN_SUCCESS,payload:{username:"A D",email:"admin@admin.com",password:"admin"}})
       toast({
         title: "Admin Login Successfull",
         status: "success",
@@ -90,7 +96,7 @@ const Login = () => {
     }
   }
 
-  if(isAuth || isAdmin){
+  if(JSON.parse(isAuth) || JSON.parse(isAdmin)){
     return <Navigate to='/' />
   }
 
@@ -103,7 +109,7 @@ const Login = () => {
       </Helmet>
 
       <form onSubmit={handleSubmit} style={{width:"350px",margin:"auto", padding:"30px",borderRadius:"30px"}}>
-        <Text boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" borderRadius="5px" bg="black" p="5px" color="white" fontSize="20px" fontWeight="bold" textAlign="center">Login User</Text><br/>
+        <Text boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" borderRadius="5px" bg="black" p="5px" color="white" fontSize="20px" fontWeight="bold" textAlign="center">Login User/Admin</Text><br/>
       <FormControl isRequired>
         <FormLabel fontWeight="bold">Enter Your Email</FormLabel>
         <InputGroup>
@@ -115,7 +121,8 @@ const Login = () => {
         <FormLabel fontWeight="bold">Enter Your Password</FormLabel>
         <InputGroup>
           <InputLeftElement>👁️</InputLeftElement>
-          <Input value={password} onChange={(e)=> setPassword(e.target.value)} _hover={{background:"#f0f0f0"}} border={isError? "1px solid red":"1px solid black"} background="white" type='password' placeholder='Enter Password' required/>
+          <InputRightElement cursor="pointer" onClick={()=> setShow(!show)}>{show? openeye : closeye}</InputRightElement>
+          <Input value={password} onChange={(e)=> setPassword(e.target.value)} _hover={{background:"#f0f0f0"}} border={isError? "1px solid red":"1px solid black"} background="white" type={show? "text" :"password"} placeholder='Enter Password' required/>
         </InputGroup>
       </FormControl>
 

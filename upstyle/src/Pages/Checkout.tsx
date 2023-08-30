@@ -72,6 +72,8 @@ const Checkout = () => {
   }
 
   const handleClose = ()=>{
+    let tot = Number(localStorage.getItem("purchased"))+data.length;
+    localStorage.setItem("purchased",(tot).toString());
     localStorage.removeItem("cart");
     localStorage.removeItem("cartdata");
     dispatch({type:CART_CHANGE})
@@ -135,10 +137,9 @@ const Checkout = () => {
       </form>
     </Flex>
 
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+      <Modal size="xs" isCentered isOpen={isOpen} onClose={onClose}>
       {overlay}
       <ModalContent boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
-        <ModalCloseButton />
         <ModalBody>
           <Image margin="auto" w="50%" src='https://www.explore-liverpool.com/wp-content/uploads/2019/12/partypopper.gif' />
           <Text fontWeight="bold" textAlign="center" fontSize="20px">Order Placed Successfully</Text>

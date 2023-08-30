@@ -25,6 +25,8 @@ import { Helmet } from "react-helmet";
 const Men = () => {
 
   const [datalen,setDataLen] = useState<String[]>([]);
+  const isAuth = JSON.parse(useSelector((store:any)=> store.authReducer.isAuth));
+  const isAdmin = JSON.parse(useSelector((store:any)=> store.authReducer.isAdmin));
 
   useEffect(() => {
     document.body.style.background = "#F2F2F3"
@@ -197,7 +199,7 @@ const handleAddToCart = (product: ProductType) => {
                         </Button>
                       ))}
                     </Flex>
-                    <Button
+                    {isAuth || isAdmin ?<Button
                       background="#DE6737"
                       size="md"
                       color="white"
@@ -219,7 +221,7 @@ const handleAddToCart = (product: ProductType) => {
                       }
                     >
                       {datalen.includes(Title) ? "Go to Cart" : "Add to Cart"}
-                    </Button>
+                    </Button>: <Button onClick={()=> navigate("/login")} bg="#DE6737" _hover={{bg:"#DE6737"}} size="md" color="white">Login First</Button>}
                   </VStack>
                 </Box>
               )
