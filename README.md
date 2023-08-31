@@ -50,9 +50,10 @@ This project is a full stack application which focuses on e-commerce for men and
 
 ## Screenshots
 
-Home-Page--
+### Home-Page
 
-![home](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/f8eda93c-1fe4-4ed3-9c6f-3fc23a8ecdf6)
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/844e8624-7f60-42da-a24d-1837eabfc5c5)
+
 
 Sign-up-Page--
 
