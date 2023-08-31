@@ -59,13 +59,15 @@ This project is a full stack application which focuses on e-commerce for men and
 
 ### Sign-up-Page--
 
--This page has a nav bar with has, reference links for further pages including, the product page. This page has a form to collect user details to register. If user has already an account he/she can go to log in page by clicking "click in to login".
+- This page has a nav bar with has, reference links for further pages including, the product page. This page has a form to collect user details to register. If user has already an account he/she can go to log in page by clicking "click in to login".
+  
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/414104b4-6cc4-4579-93fd-e435d27421a8)
 
 
 
 ### Log-in-Page--
-- This page also has a nav bar with has, reference links for further pages . This page has a form to collect user details to login. By providing correct email and password ,user can login and after login he will be redirected to home page .
+- This page also has a nav bar with has, reference links for further pages . This page has a form to collect user details to login. By providing correct email and password ,user can login and after login he will be redirected to home page.
+  
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/c59cfb8e-1a21-4b40-b6a9-4af51acab2b3)
 
 
@@ -73,18 +75,21 @@ This project is a full stack application which focuses on e-commerce for men and
 ### Men-Product-Page--
 
 - This page has all the men products and all the functionality including sorting and filtering. Here each product has an add-to-cart button by which we can add the product to the cart. With the help of the cart button, we can go to the cart page.
+  
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/c95011f8-3011-4860-9f00-a546d3afa8cc)
 
 
 ### Women-Product-Page--
 
 - This page has all the women products and all the functionality including sorting and filtering. Here also each product has an add-to-cart button by which we can add the product to the cart. With the help of the cart button, we can go to the cart page.
+  
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/eb1400b9-4ab1-404b-a774-4197a64a5e12)
 
 
 ### Admin-AddProduct-Page--
 
 - In Admin side admin can do all the crud operations on any product.
+  
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/65107928-166b-42c7-8307-4ca9fd508bb6)
 
 
