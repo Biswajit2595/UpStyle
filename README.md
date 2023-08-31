@@ -55,26 +55,29 @@ This project is a full stack application which focuses on e-commerce for men and
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/844e8624-7f60-42da-a24d-1837eabfc5c5)
 
 
-Sign-up-Page--
+### Sign-up-Page--
 
-![Sigin-up-user](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/e3e3ad7b-0614-4526-ba17-c1541fcac9b8)
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/414104b4-6cc4-4579-93fd-e435d27421a8)
 
 
-Log-in-Page--
+
+### Log-in-Page--
 
 ![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/c59cfb8e-1a21-4b40-b6a9-4af51acab2b3)
 
 
 
-Men-Product-Page--
+### Men-Product-Page--
 
-![men-product-page](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/48e48da1-503f-48cd-b1c8-eb230bd75afc)
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/c95011f8-3011-4860-9f00-a546d3afa8cc)
 
-Women-Product-Page--
 
-![women-product-page](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/707baae4-5e4b-45d2-ab80-5436594a4b6a)
+### Women-Product-Page--
 
-Admin-AddProduct-Page--
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/eb1400b9-4ab1-404b-a774-4197a64a5e12)
+
+
+### Admin-AddProduct-Page--
 
 ![admin-addproduct](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/36fffd1c-084a-4276-bfa2-4687b032c113)
 
