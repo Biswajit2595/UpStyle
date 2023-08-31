@@ -23,6 +23,7 @@ const SignUp = () => {
 
   useEffect(() => {
     document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+    document.body.style.backgroundSize= "cover"
   }, [])
 
   const dispatch:any = useDispatch()
@@ -108,7 +109,7 @@ const SignUp = () => {
 
 
   return (
-    <Flex mb="120px" mt="90px">
+    <Flex mt="90px">
       <Helmet>
         <title>SignUp | UPSTYLE</title>
       </Helmet>

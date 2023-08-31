@@ -102,7 +102,7 @@ const Login = () => {
 
 
   return (
-    <Flex mb="120px" mt="80px">
+    <Flex mt="80px">
 
       <Helmet>
         <title>Login | UPSTYLE</title>
