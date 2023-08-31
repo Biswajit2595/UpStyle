@@ -101,6 +101,7 @@ To be updated
 ## Demo
 
 deployed link for demo:-
+upstylenew.netlify.app/
 
 ## Tech-stack
 
