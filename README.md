@@ -102,7 +102,7 @@ To be updated
 
 deployed link for demo:-
 
- -- upstylenew.netlify.app/
+ -- [upstylenew.netlify.app/](https://upstylenew.netlify.app/)
 
 ## Tech-stack
 
