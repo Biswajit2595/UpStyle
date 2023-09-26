@@ -95,8 +95,6 @@ This project is a full stack application which focuses on e-commerce for men and
 
 
 
-
-
 To be updated
 ## Demo
 
@@ -112,14 +110,28 @@ deployed link for demo:-
 - Redux
 - Redux-persist
 
-
 ## CSS libraries
 - Chakra Ui
 
 
-## Status
+### Installation
 
-This project is completed. 
+1. Clone the repository:
+
+   ```bash
+   https://github.com/Biswajit2595/warlike-current-5989
+
+ ## Project Setup
+ 
+1. **Open a new terminal and navigate back to the project root (`warlike-current-5989`).**
+
+2. **Navigate to the upStyle directory:**
+
+   ```bash
+   cd upStyle
+   npm install
+   npm start
+    
 ## Final Words
 
 Thank you for staying with me up to this point. Suggestions and feedbacks are always welcomed.😃
