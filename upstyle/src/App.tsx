@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import AllRoutes from './Routes/AllRoutes';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
+import ScrollToTop from './Components/ScrollToTop';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NavBar />
       <AllRoutes />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

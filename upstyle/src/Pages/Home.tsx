@@ -9,6 +9,7 @@ import tailor from "../Components/tailor.jpg"
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../Redux/productReducer/action';
 import { ProductType } from '../constants';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
 
@@ -34,6 +35,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>UPSTYLE | Fashion | Trend & More</title>
+      </Helmet>
     {/* // UpperBody part */}
     <Flex id="header-parent" w="95%" margin="auto" justifyContent="space-between" mt="30px">
       <div >
@@ -145,7 +149,7 @@ const Home = () => {
 
     {/* video part body */}
 
-    <Flex w="100%" display="block" mt="60px" mb="80px">
+    <Flex w="100%" display="block" mt="60px" mb="30px">
       <div style={{width:"90%",margin:"auto", fontFamily:"segoe ui black",marginBottom:"20px",letterSpacing:"-1px"}}>
         <Text fontSize={{base:"30px",sm:"38px",md:"45px",lg:"47px",xl:"47px"}}>WANT TO DESIGN YOUR OWN? CALM, WE CAN DO IT!</Text>
       </div>

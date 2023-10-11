@@ -50,32 +50,47 @@ This project is a full stack application which focuses on e-commerce for men and
 
 ## Screenshots
 
-Home-Page--
+### Home-Page
 
-![home](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/f8eda93c-1fe4-4ed3-9c6f-3fc23a8ecdf6)
+- This page has a nav bar with has, reference links for further pages including, the product page, sign-up, sign-in.
 
-Sign-up-Page--
-
-![Sigin-up-user](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/e3e3ad7b-0614-4526-ba17-c1541fcac9b8)
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/844e8624-7f60-42da-a24d-1837eabfc5c5)
 
 
-Log-in-Page--
+### Sign-up-Page--
 
-![Log-in-user](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/f4bf27e6-a9a0-4fb0-bfa8-979778e7a015)
+- This page has a nav bar with has, reference links for further pages including, the product page. This page has a form to collect user details to register. If user has already an account he/she can go to log in page by clicking "click in to login".
+  
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/414104b4-6cc4-4579-93fd-e435d27421a8)
 
 
-Men-Product-Page--
 
-![men-product-page](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/48e48da1-503f-48cd-b1c8-eb230bd75afc)
+### Log-in-Page--
+- This page also has a nav bar with has, reference links for further pages . This page has a form to collect user details to login. By providing correct email and password ,user can login and after login he will be redirected to home page.
+  
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/c59cfb8e-1a21-4b40-b6a9-4af51acab2b3)
 
-Women-Product-Page--
 
-![women-product-page](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/707baae4-5e4b-45d2-ab80-5436594a4b6a)
 
-Admin-AddProduct-Page--
+### Men-Product-Page--
 
-![admin-addproduct](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/36fffd1c-084a-4276-bfa2-4687b032c113)
+- This page has all the men products and all the functionality including sorting and filtering. Here each product has an add-to-cart button by which we can add the product to the cart. With the help of the cart button, we can go to the cart page.
+  
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/c95011f8-3011-4860-9f00-a546d3afa8cc)
 
+
+### Women-Product-Page--
+
+- This page has all the women products and all the functionality including sorting and filtering. Here also each product has an add-to-cart button by which we can add the product to the cart. With the help of the cart button, we can go to the cart page.
+  
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/eb1400b9-4ab1-404b-a774-4197a64a5e12)
+
+
+### Admin-AddProduct-Page--
+
+- In Admin side admin can do all the crud operations on any product.
+  
+![image](https://github.com/Biswajit2595/warlike-current-5989/assets/119488668/65107928-166b-42c7-8307-4ca9fd508bb6)
 
 
 
@@ -85,6 +100,8 @@ To be updated
 
 deployed link for demo:-
 
+ -- [upstylenew.netlify.app/](https://upstylenew.netlify.app/)
+
 ## Tech-stack
 
 - Type Script
@@ -93,14 +110,28 @@ deployed link for demo:-
 - Redux
 - Redux-persist
 
-
 ## CSS libraries
 - Chakra Ui
 
 
-## Status
+### Installation
 
-This project is completed. 
+1. Clone the repository:
+
+   ```bash
+   https://github.com/Biswajit2595/warlike-current-5989
+
+ ## Project Setup
+ 
+1. **Open a new terminal and navigate back to the project root (`warlike-current-5989`).**
+
+2. **Navigate to the upStyle directory:**
+
+   ```bash
+   cd upStyle
+   npm install
+   npm start
+    
 ## Final Words
 
 Thank you for staying with me up to this point. Suggestions and feedbacks are always welcomed.😃

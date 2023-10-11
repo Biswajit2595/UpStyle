@@ -19,9 +19,16 @@ const links = [
 const NavBar = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
-  const isAdmin = useSelector((store:any)=> store.authReducer.isAdmin);
+  const isAuth = JSON.parse(useSelector((store:any)=> store.authReducer.isAuth));
+  const isAdmin = JSON.parse(useSelector((store:any)=> store.authReducer.isAdmin));
   const username = useSelector((store:any)=> store.authReducer.user.username);
+  const purchased = Number(localStorage.getItem("purchased")) || 0;
+
+  let bag="";
+  let words = username?.split(" ");
+  words?.map((item:any)=>(
+    bag+= item[0].toUpperCase()
+  ))
 
   const search = <FontAwesomeIcon size="lg" icon={faSearch} />
   const basket = <FontAwesomeIcon fade size="lg" icon={faShoppingBasket} />
@@ -107,7 +114,7 @@ const NavBar = () => {
         <Text onClick={()=> navigate("/cart")}>{basket}{isAuth && <span style={{background:"black",color:"white",borderRadius:"50%",padding:"1px 4px"}}>{data.length}</span>}</Text>
         <Menu>
           <MenuButton color={isAuth || isAdmin ? "blue" : "black"}>
-            {user}
+            {isAdmin || isAuth ? <span style={{boxShadow: "rgba(0, 0, 0, 0.541) 1.95px 1.95px 2.6px",background:"blue",color:"white",height:"10px",width:"10px",padding:"5px",borderRadius:"50%",fontWeight:"500"}}>{bag}</span> : user}
           </MenuButton>
           <MenuList>
             <MenuGroup>
@@ -116,7 +123,7 @@ const NavBar = () => {
               {isAdmin===false && <MenuItem><Text>{home} My Account</Text></MenuItem>}
               {isAdmin && <MenuItem onClick={()=> navigate("/admin")}><Text>{home} MANAGE DATA</Text></MenuItem>}
               <MenuItem onClick={()=> navigate("/cart")}><Text>{order} My Cart</Text></MenuItem>
-              <MenuItem><Text>{baskets} My Orders</Text></MenuItem>
+              <MenuItem><Text>{baskets} My Orders{(isAuth || isAdmin) && `:- ${purchased}`}</Text></MenuItem>
               <MenuItem onClick={()=> navigate("/payment")}><Text>{payment} Payments</Text></MenuItem>
               {isAuth || isAdmin ? <MenuItem onClick={handleLogout}><Text>{signout} Logout</Text></MenuItem> : <MenuItem onClick={()=> navigate("/login")}><Text>{signin} Login/SignUp</Text></MenuItem>}
             </MenuGroup>
@@ -129,7 +136,12 @@ const NavBar = () => {
         </Menu>
       </Flex>
 
-      <Box onClick={()=> onOpen()} display={{base:"block",sm:"block",md:"none",lg:"none",xl:"none"}}>{bars}</Box>
+      <Flex w="70px" justifyContent="space-between" display={{base:"flex",sm:"flex",md:"none",lg:"none",xl:"none"}}>
+      <Text onClick={()=> navigate("/cart")}>{basket}{isAuth && <span style={{background:"black",color:"white",borderRadius:"50%",padding:"1px 4px"}}>{data.length}</span>}</Text>
+
+      <Box onClick={()=> onOpen()} >{bars}</Box>
+      </Flex>
+
     </Flex>
 
     <Menubar isOpen={isOpen} onClose={onClose} />

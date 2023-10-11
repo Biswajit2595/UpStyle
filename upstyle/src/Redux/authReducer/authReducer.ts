@@ -8,17 +8,21 @@ export type AuthAction = {
 export   type AuthState = {
     isLoading: boolean;
     isError: boolean;
-    user: any,
-    isAuth: boolean;
-    isAdmin: boolean;
+    user: Object,
+    isAuth: string;
+    isAdmin: string;
   };
+
+const userFromLocalStorage = localStorage.getItem("login_data");
+
+const parsedUser = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : {};
   
   const initialState: AuthState = {
     isLoading: false,
     isError: false,
-    user: {},
-    isAuth: false,
-    isAdmin: false
+    user: parsedUser,
+    isAuth: localStorage.getItem("login_user_auth") || "false",
+    isAdmin: localStorage.getItem("login_admin_auth") || "false"
   };
   
   export const authReducer = (state: AuthState = initialState, action: AuthAction) => {
@@ -30,6 +34,9 @@ export   type AuthState = {
         };
 
         case USER_LOGOUT: 
+          localStorage.setItem("login_data","");
+          localStorage.setItem("login_user_auth","false");
+          localStorage.setItem("login_admin_auth","false");
         return {
           ...state,isAuth: false, isAdmin: false,user: {}
         }
@@ -41,15 +48,21 @@ export   type AuthState = {
           };
 
         case USER_LOGIN_SUCCESS:
+          localStorage.setItem("login_data",JSON.stringify(action.payload));
+          localStorage.setItem("login_user_auth","true");
+          localStorage.setItem("login_admin_auth","false");
           return {
             ...state,
-            isLoading: false,isAuth: true, user: action.payload,isAdmin: false,isError: false
+            isLoading: false,isAuth: "true", user: action.payload,isAdmin: "false",isError: false
           };
 
           case ADMIN_SUCCESS:
+            localStorage.setItem("login_data",JSON.stringify(action.payload));
+            localStorage.setItem("login_user_auth","false");
+            localStorage.setItem("login_admin_auth","true");
           return {
             ...state,
-            isLoading: false, isAdmin: true,isAuth: false,isError: false
+            isLoading: false, isAdmin: "true",user: action.payload,isAuth: "false",isError: false
           };
 
       case USER_FAIL:

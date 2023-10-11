@@ -23,6 +23,7 @@ const SignUp = () => {
 
   useEffect(() => {
     document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
+    document.body.style.backgroundSize= "cover"
   }, [])
 
   const dispatch:any = useDispatch()
@@ -35,51 +36,80 @@ const SignUp = () => {
   const toast = useToast()
 
   const [formdata,setFormdata] = useState(initialState)
+  const [userdata,setUserData] = useState([]);
+
+  useEffect(()=>{
+    if(userdata.length>0){
+      checkEmail()
+    }
+  },[userdata])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
-    dispatch(makingPost(formdata)).then((res:any)=>{
-      dispatch({type:USER_SIGNUP_SUCCESS});
-      toast({
-        title: "Account created.",
-        description: "We've created your account for you.",
-        status: "success",
-        duration: 3000,
-        position: "bottom-right",
-        isClosable: true,
-      });
-      setFormdata(initialState)
+    dispatch({type:USER_LOADING});
+    axios.get("https://upstyle-fq0x.onrender.com/user")
+    .then((res)=>{
+      setUserData(res.data)
 
-      setTimeout(() => {
-        navigate("/login")
-      }, 3000);
+    }).catch((error)=>{
 
-
-  }).catch((error:any)=>{
-      dispatch({type: USER_FAIL})
-      toast({
-        title: "Something Error, Please try again!",
-        status: "error",
-        duration: 2000,
-        position: "bottom-left",
-        isClosable: true,
-      });
-  })
-
-    
+    })
     
   }
 
+  function checkEmail(){
+
+    let data = userdata.find((item:any)=> item.email===formdata.email);
+    if(data){
+      toast({
+        title: "Email is already registered!!",
+        status: "error",
+        position: "bottom",
+        isClosable: true,
+        duration: 3000
+      })
+      dispatch({type: USER_FAIL})
+    }else{
+      dispatch(makingPost(formdata)).then((res:any)=>{
+        dispatch({type:USER_SIGNUP_SUCCESS});
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 3000,
+          position: "bottom-right",
+          isClosable: true,
+        });
+        setFormdata(initialState)
+  
+        setTimeout(() => {
+          navigate("/login")
+        }, 3000);
+  
+  
+    }).catch((error:any)=>{
+        dispatch({type: USER_FAIL})
+        toast({
+          title: "Something Error, Please try again!",
+          status: "error",
+          duration: 2000,
+          position: "bottom-left",
+          isClosable: true,
+        });
+    })
+    }
+
+  }
   
 
-  if(isAuth){
+  if(JSON.parse(isAuth)){
     return <Navigate to='/' />
   }
 
 
   return (
-    <Flex mb="120px" mt="90px">
+    <Flex mt="90px">
       <Helmet>
         <title>SignUp | UPSTYLE</title>
       </Helmet>
@@ -137,4 +167,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp;

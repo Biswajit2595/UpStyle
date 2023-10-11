@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from "../constants";
 import { useToast } from "@chakra-ui/react";
 import { CART_CHANGE } from "../Redux/actionTypes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 
 const SingleWomen = () => {
@@ -20,6 +20,8 @@ const SingleWomen = () => {
   const dispatch:any = useDispatch()
   const [datalen,setDataLen] = useState<String[]>([]);
   const navigate = useNavigate()
+  const isAuth = JSON.parse(useSelector((store:any)=> store.authReducer.isAuth));
+  const isAdmin = JSON.parse(useSelector((store:any)=> store.authReducer.isAdmin));
 
   useEffect(() => {
     document.body.style.backgroundImage = "url(https://cdn.wallpapersafari.com/21/61/zkNgu4.jpg)"
@@ -197,7 +199,7 @@ const SingleWomen = () => {
 
 
 
-        <Button
+        {isAuth || isAdmin ? <Button
           mt="2"
           colorScheme="blue"
           onClick={() => handleAddToCart(data)}
@@ -206,7 +208,7 @@ const SingleWomen = () => {
           alignSelf="center"
         >
           {datalen.includes(data.Title) ? "Go to Cart" : "Add to Cart"}
-        </Button>
+        </Button> : <Button onClick={()=> navigate("/login")} mt="2" colorScheme="blue" w="100%" maxWidth="300px" alignSelf="center" color="white">Login First</Button>}
       </Box>
     </Flex>
   </Flex>

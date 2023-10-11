@@ -8,7 +8,7 @@ const PrivateRoute= ({ children }:any) => {
   const isAuth = useSelector((store:any)=> store.authReducer.isAuth);
   const location = useLocation()
 
-  if(!isAuth){
+  if(JSON.parse(isAuth)===false){
     return <Navigate to='/login' state={location.pathname} replace={true}  />
   }
 
