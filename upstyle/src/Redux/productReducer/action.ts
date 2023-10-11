@@ -101,7 +101,7 @@ export const getMensuser=(paramObj:any)=>(dispatch:any)=>{
   dispatch({type:GET_PRODUCT_REQUEST})
 
   getMensProduser(paramObj).then((res)=>{
-    console.log(res.data,"hellooooooo")
+    console.log(res.data)
     dispatch({type:GET_PRODUCT_MEN_SUCCESS,payload:res.data})
 
 }).catch((error)=>{

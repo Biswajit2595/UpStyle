@@ -9,7 +9,11 @@ import {
   Button,
   useBreakpointValue,
   Skeleton,
+  Input,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
 import { ProductType } from '../constants'
@@ -23,6 +27,8 @@ import { Helmet } from "react-helmet";
 const Women = () => {
 
   const [datalen,setDataLen] = useState<String[]>([]);
+  const [filteredWomen, setFilteredWomen] = useState([]); 
+  const [searchVal,setSearchVal]=useState<any>("")
 
   useEffect(() => {
     document.body.style.background = "#F2F2F3"
@@ -62,6 +68,18 @@ const Women = () => {
       womens: store.productReducer.womens,
     }
   });
+
+  useEffect(() => {
+    const lowerSearchVal = searchVal.toLowerCase();
+    const filteredProducts = womens.filter((product:any) => {
+      return (
+        product.Title.toLowerCase().includes(lowerSearchVal) ||
+        product.Category.toLowerCase().includes(lowerSearchVal) ||
+        product.Brand.toLowerCase().includes(lowerSearchVal)
+      );
+    });
+    setFilteredWomen(filteredProducts);
+  }, [searchVal, womens]);
 
 
   useEffect(() => {
@@ -142,11 +160,22 @@ const Women = () => {
         borderWidth={{ base: "0", md: "1px" }}
         p={4}
       >
+                {/* <Input style={{border:"1px solid black", width:"50%",margin:"auto 10px"}} placeholder="Search for Items" value={searchVal} onChange={(e)=>setSearchVal(e.target.value)} /> */}
+                <InputGroup style={{ width: "50%", margin: "auto 10px" }}>
+                <Input
+                  placeholder="Search for Items"
+                  value={searchVal}
+                  onChange={(e) => setSearchVal(e.target.value)}
+                />
+                <InputLeftElement pointerEvents="none">
+                  <SearchIcon color="gray.300" />
+                </InputLeftElement>
+              </InputGroup>
         {isLoading
           ? skel.map((el) => {
               return <Skeleton height="200px" mb="20px" />;
             })
-          : womens.map(
+          : filteredWomen.map(
               ({
                 Brand,
                 Category,

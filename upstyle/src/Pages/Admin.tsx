@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import DataAnalytics from '../Components/DataAnalytics';
 
 
 
@@ -72,8 +73,6 @@ const Admin = () => {
     // if(!isAdmin){
     //   navigate("/login")
     // }
-
-
     dispatch(getMens())
     dispatch(getWomens())
   },[dispatch])
@@ -165,10 +164,10 @@ const Admin = () => {
         <TabList m="auto"  >
           <Tab border="2px solid black" onClick={() => setActiveTab('addProduct')}>Add Product</Tab>
           <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Product List</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('dataAnalysis')}>Data Analysis</Tab>
         </TabList>
 
         <TabPanels >
-
           <TabPanel m="auto" w={['95%', '70%', '50%']}>
             <Box
               bgColor="#000000"
@@ -317,6 +316,9 @@ const Admin = () => {
           <TabPanel >
             <AdminList name="Mens" data={mens} />
             <AdminList name="Womens" data={womens} />
+          </TabPanel>
+          <TabPanel>
+            <DataAnalytics/>
           </TabPanel>
         </TabPanels>
       </Tabs>
