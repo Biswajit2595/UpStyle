@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -10,6 +11,9 @@ import {
   useBreakpointValue,
   Skeleton,
   SkeletonCircle,
+  Input,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
 
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -21,12 +25,11 @@ import { Sidebar } from "../Components/Sidebar";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CART_CHANGE } from "../Redux/actionTypes";
 import { Helmet } from "react-helmet";
+import { SearchIcon } from "@chakra-ui/icons";
 
 const Men = () => {
 
   const [datalen,setDataLen] = useState<String[]>([]);
-  const isAuth = JSON.parse(useSelector((store:any)=> store.authReducer.isAuth));
-  const isAdmin = JSON.parse(useSelector((store:any)=> store.authReducer.isAdmin));
 
   useEffect(() => {
     document.body.style.background = "#F2F2F3"
@@ -43,6 +46,8 @@ const Men = () => {
   const btnSize = useBreakpointValue({ base: 'sm', md: 'md', lg: 'lg' });
   let skel= new Array(8).fill(0)
   const navigate = useNavigate()
+  const [filteredMens, setFilteredMens] = useState([]); 
+  const [searchVal,setSearchVal]=useState<any>("")
 
   const dispatch: any = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,9 +58,21 @@ const Men = () => {
       mens: store.productReducer.mens,
     };
   }, shallowEqual);
-
+  // console.log(mens)
   //console.log(paramObj)
 
+  useEffect(() => {
+    const lowerSearchVal = searchVal.toLowerCase();
+    const filteredProducts = mens.filter((product:any) => {
+      return (
+        product.Title.toLowerCase().includes(lowerSearchVal) ||
+        product.Category.toLowerCase().includes(lowerSearchVal) ||
+        product.Brand.toLowerCase().includes(lowerSearchVal)
+      );
+    });
+    setFilteredMens(filteredProducts);
+  }, [searchVal, mens]);
+// console.log(filteredMens)
   useEffect(() => {
     let paramObj = {
       params: {
@@ -139,11 +156,21 @@ const handleAddToCart = (product: ProductType) => {
         borderWidth={{ base: "0", md: "1px" }}
         p={4}
       >
+                <InputGroup style={{ width: "50%", margin: "auto 10px" }}>
+                <Input
+                  placeholder="Search for Items"
+                  value={searchVal}
+                  onChange={(e) => setSearchVal(e.target.value)}
+                />
+                <InputLeftElement pointerEvents="none">
+                  <SearchIcon color="gray.300" />
+                </InputLeftElement>
+              </InputGroup>
         {isLoading
           ? skel.map((el) => {
               return <Skeleton height="200px" mb="20px" />;
             })
-          : mens.map(
+          : filteredMens.map(
               ({
                 Brand,
                 Category,
@@ -199,7 +226,7 @@ const handleAddToCart = (product: ProductType) => {
                         </Button>
                       ))}
                     </Flex>
-                    {isAuth || isAdmin ?<Button
+                    <Button
                       background="#DE6737"
                       size="md"
                       color="white"
@@ -221,7 +248,7 @@ const handleAddToCart = (product: ProductType) => {
                       }
                     >
                       {datalen.includes(Title) ? "Go to Cart" : "Add to Cart"}
-                    </Button>: <Button onClick={()=> navigate("/login")} bg="#DE6737" _hover={{bg:"#DE6737"}} size="md" color="white">Login First</Button>}
+                    </Button>
                   </VStack>
                 </Box>
               )

@@ -1,4 +1,3 @@
-
 import { getMensProduser, getWomensProduser,getMensProd, getProductData, getWomensProd, AddMensProd, AddWomensProd, DeletMensProd, DeletWomenProd,  PutMensProd, PutWomenProd } from '../../api';
 import { GET_PRODUCT_FAILURE,DELETE_PRODUCT_SUCCESS, GET_PRODUCT_MEN_FAILURE, GET_PRODUCT_MEN_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_SUCCESS, GET_PRODUCT_WOMEN_FAILURE, GET_PRODUCT_WOMEN_SUCCESS, POST_PRODUCT_SUCCESS, PRODUCT_REQUEST_FAILURE, GET_PRODUCT_SINGLE_MEN, GET_PRODUCT_SINGLE_WOMEN, PATCH_PRODUCT_SUCCESS } from '../actionTypes';
 
@@ -146,5 +145,4 @@ export const deleteMen=(id:number)=>(dispatch:any)=>{
     dispatch({type:GET_PRODUCT_WOMEN_FAILURE})
 })
 }
-
 

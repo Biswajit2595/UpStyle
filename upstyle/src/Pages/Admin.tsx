@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import AdminList from './AdminList'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -24,6 +25,7 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import DataAnalytics from '../Components/DataAnalytics';
 
 
 
@@ -72,8 +74,6 @@ const Admin = () => {
     // if(!isAdmin){
     //   navigate("/login")
     // }
-
-
     dispatch(getMens())
     dispatch(getWomens())
   },[dispatch])
@@ -165,13 +165,23 @@ const Admin = () => {
         <TabList m="auto"  >
           <Tab border="2px solid black" onClick={() => setActiveTab('addProduct')}>Add Product</Tab>
           <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Product List</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('dataAnalysis')}>Data Analysis</Tab>
         </TabList>
 
         <TabPanels >
-
           <TabPanel m="auto" w={['95%', '70%', '50%']}>
-            <Box onSubmit={handleSubmit} m="auto" bgColor="#000000" borderRadius={10} boxShadow="lg" p={5}  w={{base:"290px",sm:"350px",md:"400px",lg:"500px",xl:"500px"}} as="form"  >
-              <Heading m="auto" color="#f2f2f3">Add Product</Heading>
+            <Box
+              bgColor="#000000"
+              p={6}
+              m="auto"
+              borderRadius="30px"
+              mt={4}
+              w="500px"
+              padding={10}
+              as="form"
+              onSubmit={handleSubmit}
+            >
+              <Heading marginLeft="30%" color="#f2f2f3">Add Product</Heading>
               <FormControl>
                 <FormLabel color="#f2f2f3" fontWeight={'bold'}>Title</FormLabel>
                 <InputGroup>
@@ -307,6 +317,9 @@ const Admin = () => {
           <TabPanel >
             <AdminList name="Mens" data={mens} />
             <AdminList name="Womens" data={womens} />
+          </TabPanel>
+          <TabPanel>
+            <DataAnalytics/>
           </TabPanel>
         </TabPanels>
       </Tabs>

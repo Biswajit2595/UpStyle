@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -67,8 +68,8 @@ export const Sidebar = () => {
     setOrder(e.target.value);
   };
 
-  console.log(brand);
-  console.log(category);
+  // console.log(brand);
+  // console.log(category);
 
   const handleClick = () => {
     setBrand([]);
@@ -190,3 +191,4 @@ export const Sidebar = () => {
     </VStack>
   );
 };
+
