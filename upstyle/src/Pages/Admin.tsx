@@ -165,7 +165,7 @@ const Admin = () => {
         <TabList m="auto"  >
           <Tab border="2px solid black" onClick={() => setActiveTab('addProduct')}>Add Product</Tab>
           <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Product List</Tab>
-          <Tab border="2px solid black" onClick={() => setActiveTab('dataAnalysis')}>Data Analysis</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('dataAnalysis')}>Product Stock Analysis</Tab>
         </TabList>
 
         <TabPanels >
@@ -319,7 +319,7 @@ const Admin = () => {
             <AdminList name="Womens" data={womens} />
           </TabPanel>
           <TabPanel>
-            <DataAnalytics/>
+            <DataAnalytics />
           </TabPanel>
         </TabPanels>
       </Tabs>
