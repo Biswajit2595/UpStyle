@@ -51,25 +51,16 @@ const ProdTable = ( {id, Brand, Category, Price, Quantity, Rating, Size, Stock, 
           <Td>{Title}</Td>
           <Td>{Price}</Td>
           <Td>
-          {
-              name==="Mens" &&
-              <Link
-              as={Editlink}
-              to={`/edit/${id}`}
-            >
-              <Button>Edit</Button>
-            </Link>
-            }
-            {
-              name==="Womens" &&
-              <Link
-              as={Editlink}
-              to={`/edit/${id}/women`}
-            >
-              <Button>Edit</Button>
-            </Link>
-            }
-          
+            {name === 'Mens' && (
+              <Link as={Editlink} to={`/edit/${id}`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
+            {name === 'Womens' && (
+              <Link as={Editlink} to={`/edit/${id}/women`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
           </Td>
           <Td>
             <Button onClick={handleDelete}>Delete</Button>
@@ -85,25 +76,16 @@ const ProdTable = ( {id, Brand, Category, Price, Quantity, Rating, Size, Stock, 
           <Td>{Rating}</Td>
           <Td>{Stock}</Td>
           <Td>
-          {
-              name==="Mens" &&
-              <Link
-              as={Editlink}
-              to={`/edit/${id}`}
-            >
-              <Button>Edit</Button>
-            </Link>
-            }
-            {
-              name==="Womens" &&
-              <Link
-              as={Editlink}
-              to={`/edit/${id}/women`}
-            >
-              <Button>Edit</Button>
-            </Link>
-            }
-          
+            {name === 'Mens' && (
+              <Link as={Editlink} to={`/edit/${id}`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
+            {name === 'Womens' && (
+              <Link as={Editlink} to={`/edit/${id}/women`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
           </Td>
           <Td>
             <Button onClick={handleDelete}>Delete</Button>
@@ -119,25 +101,16 @@ const ProdTable = ( {id, Brand, Category, Price, Quantity, Rating, Size, Stock, 
           <Td>{Rating}</Td>
           <Td>{Stock}</Td>
           <Td>
-          {
-              name==="Mens" &&
-              <Link
-              as={Editlink}
-              to={`/edit/${id}`}
-            >
-              <Button>Edit</Button>
-            </Link>
-            }
-            {
-              name==="Womens" &&
-              <Link
-              as={Editlink}
-              to={`/edit/${id}/women`}
-            >
-              <Button>Edit</Button>
-            </Link>
-            }
-          
+            {name === 'Mens' && (
+              <Link as={Editlink} to={`/edit/${id}`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
+            {name === 'Womens' && (
+              <Link as={Editlink} to={`/edit/${id}/women`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
           </Td>
           <Td>
             <Button onClick={handleDelete}>Delete</Button>
@@ -145,7 +118,6 @@ const ProdTable = ( {id, Brand, Category, Price, Quantity, Rating, Size, Stock, 
         </>
       )}
     </Tr>
-
   );
 };
 
