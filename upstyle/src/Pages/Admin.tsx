@@ -164,8 +164,9 @@ const Admin = () => {
       <Tabs m="auto" variant="enclosed"  size={tabSize}>
         <TabList m="auto"  >
           <Tab border="2px solid black" onClick={() => setActiveTab('addProduct')}>Add Product</Tab>
-          <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Product List</Tab>
-          <Tab border="2px solid black" onClick={() => setActiveTab('dataAnalysis')}>Data Analysis</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Mens Product</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('adminList')}>Womens Product</Tab>
+          <Tab border="2px solid black" onClick={() => setActiveTab('dataAnalysis')}>Product Stock Analysis</Tab>
         </TabList>
 
         <TabPanels >
@@ -176,7 +177,7 @@ const Admin = () => {
               m="auto"
               borderRadius="30px"
               mt={4}
-              w="500px"
+              maxW="500px"
               padding={10}
               as="form"
               onSubmit={handleSubmit}
@@ -316,10 +317,12 @@ const Admin = () => {
           </TabPanel>
           <TabPanel >
             <AdminList name="Mens" data={mens} />
+          </TabPanel>
+          <TabPanel>
             <AdminList name="Womens" data={womens} />
           </TabPanel>
           <TabPanel>
-            <DataAnalytics/>
+            <DataAnalytics />
           </TabPanel>
         </TabPanels>
       </Tabs>
