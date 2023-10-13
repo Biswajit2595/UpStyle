@@ -1,17 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { Doughnut } from 'react-chartjs-2';
 import { productReducer } from '../Redux/productReducer/productReducer';
-import { Pie,Doughnut, Radar, PolarArea, Line, Bar } from 'react-chartjs-2';
+import { PolarArea, } from 'react-chartjs-2';
 import { Chart as ChartJs } from "chart.js/auto"
 import { CategoryScale, Chart, registerables } from "chart.js";
 import { Box, Flex, Heading, Text, useBreakpointValue } from '@chakra-ui/react';
 
-// interface ProductCategory {
-//   Category: string
-//   Stock: number
-//   // Other properties from your product type
-// }
+
 Chart.register(CategoryScale);
 Chart.register(...registerables);
 
@@ -26,6 +21,8 @@ const DataAnalytics = () => {
   const mensCategories: any = Array.from(menData);
   const womensCategories: any = Array.from(womenData);
 
+  console.log(mensCategories)
+  console.log(womensCategories)
   const totalStockByCategoryMen: { [key: string]: number } = {};
   const totalStockByCategoryWomen: { [key: string]: number } = {};
 
