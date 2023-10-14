@@ -71,9 +71,9 @@ const Admin = () => {
   }, [])
 
   useEffect(()=>{
-    // if(!isAdmin){
-    //   navigate("/login")
-    // }
+    if(!isAdmin){
+      navigate("/login")
+    }
     dispatch(getMens())
     dispatch(getWomens())
   },[dispatch])
