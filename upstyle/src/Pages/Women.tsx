@@ -13,6 +13,8 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  GridItem,
+  Grid,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -146,23 +148,13 @@ const Women = () => {
   return (
     //===================================================================================>
 
-    <Flex direction={{ base: "column", md: "row" }}>
+    <Flex direction={{ base: "column", md: "row" }} ml={10} mr={10} p={6}>
       <Helmet>
         <title>Women Fashion | UPSTYLE</title>
       </Helmet>
       {/* Sidebar */}
       <Box flex={{ base: "1", md: "3" }}>
-        <Sidebar2 />
-      </Box>
-
-      {/* Main Content */}
-      <Box
-        flex={{ base: "2", md: "7" }}
-        borderWidth={{ base: "0", md: "1px" }}
-        p={4}
-      >
-                {/* <Input style={{border:"1px solid black", width:"50%",margin:"auto 10px"}} placeholder="Search for Items" value={searchVal} onChange={(e)=>setSearchVal(e.target.value)} /> */}
-                <InputGroup style={{ width: "50%", margin: "auto 10px" }}>
+      <InputGroup maxW="300px" mb="2" boxShadow={"sm"} style={{backgroundColor:"white",borderRadius:"40px" }}>
                 <Input
                   placeholder="Search for Items"
                   value={searchVal}
@@ -172,11 +164,44 @@ const Women = () => {
                   <SearchIcon color="gray.300" />
                 </InputLeftElement>
               </InputGroup>
+        <Sidebar2 />
+      </Box>
+
+      {/* Main Content */}
+      <Box
+        flex={{ base: "2", md: "7" }}
+        borderWidth={{ base: "0", md: "1px" }}
+        backgroundColor={"white"}
+        boxShadow="md"
+        borderRadius="5px"
+        mt="2"
+        p={4}
+      >
+                {/* <Input style={{border:"1px solid black", width:"50%",margin:"auto 10px"}} placeholder="Search for Items" value={searchVal} onChange={(e)=>setSearchVal(e.target.value)} /> */}
+                {/* <InputGroup style={{ width: "50%", margin: "auto 10px" }}>
+                <Input
+                  placeholder="Search for Items"
+                  value={searchVal}
+                  onChange={(e) => setSearchVal(e.target.value)}
+                />
+                <InputLeftElement pointerEvents="none">
+                  <SearchIcon color="gray.300" />
+                </InputLeftElement>
+              </InputGroup> */}
         {isLoading
           ? skel.map((el) => {
               return <Skeleton height="200px" mb="20px" />;
             })
-          : filteredWomen.map(
+          :(
+          <Grid
+            templateColumns={{
+              base: "repeat(1, 1fr)",
+              md: "repeat(1, 1fr)",
+              lg: "repeat(2, 1fr)",
+            }}
+            gap={4}
+          > 
+          {filteredWomen.map(
               ({
                 Brand,
                 Category,
@@ -190,8 +215,9 @@ const Women = () => {
                 image,
                 imgbag,
               }: ProductType) => (
+                <GridItem key={id}>
                 <Box
-                  key={id}
+                  // key={id}
                   borderWidth="1px"
                   borderRadius="md"
                   p={4}
@@ -261,7 +287,10 @@ const Women = () => {
                     </Button>
                   </VStack>
                 </Box>
+                </GridItem>
               )
+            )}
+            </Grid>
             )}
       </Box>
     </Flex>

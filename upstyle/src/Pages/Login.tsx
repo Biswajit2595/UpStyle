@@ -47,9 +47,7 @@ const Login = () => {
     axios.get("https://upstyle-fq0x.onrender.com/user")
     .then((res)=>{
       setUserData(res.data)
-
     }).catch((error)=>{
-
     })
   }
 

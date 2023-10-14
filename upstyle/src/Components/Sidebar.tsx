@@ -4,11 +4,8 @@ import {
   Button,
   Checkbox,
   VStack,
-  HStack,
   Heading,
   Divider,
-  Radio,
-  RadioGroup,
 } from "@chakra-ui/react";
 
 import { useSearchParams } from "react-router-dom";
@@ -79,7 +76,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <VStack p={4} spacing={4} align="stretch" maxW="300px">
+    <VStack p={4} spacing={4} boxShadow={"sm"} backgroundColor={"white"} borderRadius={"10px"} align="stretch" maxW="300px">
       {((order)||(brand.length>0)||(category.length>0))?
       <Button
         onClick={handleClick}

@@ -101,6 +101,8 @@ To be updated
 deployed link for demo:-
 
  -- [upstylenew.netlify.app/](https://upstylenew.netlify.app/)
+ -- admin email: admin@admin.com
+ -- admin password: admin
 
 ## Tech-stack
 
