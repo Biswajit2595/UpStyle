@@ -150,15 +150,16 @@ const Men = () => {
       </Helmet>
       {/* Sidebar */}
       <Box flex={{ base: "1", md: "3" }} >
-      <InputGroup maxW="300px" mb="2" style={{backgroundColor:"white",borderRadius:"40px" }}>
+      <InputGroup maxW="300px" mb="2" position={{base:"static",sm:"static",md:"static",lg:"sticky",xl:"sticky"}} top={"70px"} boxShadow={"sm"} style={{backgroundColor:"white",borderRadius:"40px" }}>
+          <InputLeftElement >
+            <SearchIcon />
+          </InputLeftElement>
           <Input
+          w={{base:"90%",sm:"90%",md:"300px",lg:"300px",xl:"300px"}}
             placeholder="Search for Items"
             value={searchVal}
             onChange={(e) => setSearchVal(e.target.value)}
           />
-          <InputLeftElement pointerEvents="none">
-            <SearchIcon color="gray.300" />
-          </InputLeftElement>
         </InputGroup>
         <Sidebar />
       </Box>
@@ -167,7 +168,7 @@ const Men = () => {
       <Box
         flex={{ base: "2", md: "7" }}
         borderWidth={{ base: "0", md: "1px" }}
-        backgroundColor={"white"}
+        backgroundColor={{base:"transparent",sm:"white",md:"white",lg:"white",xl:"white"}}
         boxShadow="md"
         borderRadius="5px"
         mt="2"
