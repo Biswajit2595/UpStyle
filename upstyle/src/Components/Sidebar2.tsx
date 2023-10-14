@@ -73,7 +73,7 @@ export const Sidebar2 = () => {
   };
 
   return (
-    <VStack p={4} spacing={4} boxShadow={"sm"} backgroundColor={"white"} borderRadius={"10px"} align="stretch" maxW="300px">
+    <VStack p={4} spacing={4} backgroundColor={{base:"transparent",sm:"white",md:"white",lg:"white",xl:"white"}} position={{base:"static",sm:"static",md:"static",lg:"sticky",xl:"sticky"}} top={"115px"} boxShadow={"sm"} borderRadius={"10px"} align="stretch" maxW="300px">
        {((order)||(brand.length>0)||(category.length>0))?
       <Button
         onClick={handleClick}
